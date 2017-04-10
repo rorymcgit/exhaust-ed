@@ -4,7 +4,6 @@
     this.playing = false;
     this.startTime = null;
     this.endTime = null;
-    game = this;
   }
 
   Game.prototype.begin = function() {
