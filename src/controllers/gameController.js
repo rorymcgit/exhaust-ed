@@ -1,26 +1,19 @@
 (function(exports) {
 
-  function GameController(game = new Game()) {
-    this.game = game;
+  function GameController(view, model) {
+    this.gameView = view;
+    this.game = model;
   }
 
-GameController.prototype.draw = function () {
+  GameController.prototype.bindKeys = function () {
+    window.addEventListener('keyup', function(e) {
+                    this.keyPressed(e);
+                }.bind(this), false);
+  };
 
-};
+  GameController.prototype.keyPressed = function (args) {
 
-GameController.prototype.keyPressed = function () {
-
-};
-
-GameController.prototype.bindKeys = function () {
-  // console.log(this.keyPressed)
-  window.addEventListener("keyup", keyPressed, false);
-};
-
-
-// GameController.prototype.getCanvas = function () {
-//
-// };
+  };
 
   exports.GameController = GameController;
 })(this);

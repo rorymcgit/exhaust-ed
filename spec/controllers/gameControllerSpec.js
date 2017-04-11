@@ -2,13 +2,20 @@ var gameController = new GameController();
 
 
 describe("GameController", function() {
-  // it("starts a game", function() {
-  //
-  // });
 
-  it("registers a 'keyup' event listener", function() {
-    spyOn(gameController, 'bindKeys').and.callThrough();
+  it("#bindKeys registers a 'keyup' event listener", function() {
+    var spyAddEventListener = spyOn(window, 'addEventListener').and.callThrough();
     gameController.bindKeys();
-    expect(window.addEventListener).toHaveBeenCalledWith("keyup", keyPressed, false)
+    expect(spyAddEventListener).toHaveBeenCalled();
   });
+
+  it("#keyPressed is called the space bar is pressed", function() {
+    var mySpy = spyOn(gameController, 'keyPressed').and.callThrough();
+    gameController.bindKeys();
+    var e = new KeyboardEvent('keyup',{'keyCode':32,'which':32});
+    window.dispatchEvent(e);
+    expect(mySpy).toHaveBeenCalled();
+  });
+
+
 });
