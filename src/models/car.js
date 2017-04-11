@@ -16,5 +16,9 @@
     this.position = this.position + this.speed;
   };
 
+  Car.prototype.getPosition = function () {
+    return this.position;
+  };
+
   exports.Car = Car;
 })(this);

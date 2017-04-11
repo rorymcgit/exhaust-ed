@@ -32,6 +32,10 @@
     this.gameView.draw(car);
   };
 
+  GameController.prototype.reachedFinishLine = function (car) {
+    return car.getPosition() >= 1460;
+  };
+
   GameController.prototype.loop = function() {
     controller.updateGame(controller.game.car);
   };
