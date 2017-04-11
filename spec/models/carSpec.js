@@ -9,7 +9,7 @@ describe("Car", function(){
     expect(car.speed).toEqual(0);
   });
 
-  it("pressing spacebar increases the speed",function(){
+  it("accelerate increases the speed",function(){
     car.accelerate();
     expect(car.speed).toEqual(0.1);
   });
