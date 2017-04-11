@@ -3,19 +3,16 @@ var gameController = new GameController();
 
 describe("GameController", function() {
 
-  it("#bindKeys registers a 'keyup' event listener", function() {
+  it("binds the spacebar key to the keyup event", function() {
     var spyAddEventListener = spyOn(window, 'addEventListener').and.callThrough();
-    gameController.bindKeys();
-    expect(spyAddEventListener).toHaveBeenCalled();
-  });
-
-  it("#keyPressed is called the space bar is pressed", function() {
     var mySpy = spyOn(gameController, 'keyPressed').and.callThrough();
+    var spaceBar = new KeyboardEvent('keyup',{'keyCode':32,'which':32});
     gameController.bindKeys();
-    var e = new KeyboardEvent('keyup',{'keyCode':32,'which':32});
-    window.dispatchEvent(e);
-    expect(mySpy).toHaveBeenCalledWith(e);
+    window.dispatchEvent(spaceBar);
+    expect(spyAddEventListener).toHaveBeenCalledWith('keyup', jasmine.any(Function), false);
+    expect(mySpy).toHaveBeenCalledWith(spaceBar);
   });
-
 
 });
+
+//Inject window

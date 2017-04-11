@@ -16,9 +16,9 @@
     <canvas id="canvas" width="1500" height="300" style="border: solid 1px;"></canvas>
   </div>
   <script>
-  var model = Game(),
-      view = GameView(model),
-      controller = gameController(view, model);
+  var game = Game(),
+      gameView = GameView(game),
+      gameController = GameController(gameView, game);
   </script>
 </body>
 </html>
