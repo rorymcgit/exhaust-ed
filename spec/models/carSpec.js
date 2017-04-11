@@ -1,8 +1,13 @@
 
 describe('Car', function() {
+  
 
   describe('a default car', function() {
     var car = new Car();
+    
+    it("exists", function(){
+      expect(car).toBeDefined();
+    });
 
     it('has a default width', function(){
       expect(car.width).toEqual(40);
@@ -51,4 +56,12 @@ describe('Car', function() {
     });
   });
 
+ describe('car methods', function(){
+   var car = new Car();
+   
+   it("accelerate increases the speed",function(){
+    car.accelerate();
+    expect(car.speed).toEqual(0.1);
+  });
+ });
 });
