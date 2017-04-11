@@ -1,27 +1,40 @@
 (function(exports) {
 
-  function GameController(gameView, game) {
+  function GameController(gameView = new GameView(), game = new Game()) {
     this.gameView = gameView;
     this.game = game;
     this.bindKeys();
-    setInterval(this.updateGame, 1);
+    controller = this;
+
   }
 
   GameController.prototype.bindKeys = function () {
     window.addEventListener('keyup', function(e) {
-                    this.keyPressed(e);
-                }.bind(this), false);
+      this.keyPressed(e);
+    }.bind(this), false);
   };
 
-  GameController.prototype.keyPressed = function (args) {
-    console.log(args);
-    this.game.car.accelerate();
+  GameController.prototype.keyPressed = function (key) {
+    // console.log(args);
+    if(key.keyCode == 32){
+      this.game.car.accelerate();
+
+      if (!this.game._isPlaying()) {
+        this.game.begin();
+
+        setInterval(this.loop, 1);
+      }
+    }
   };
 
-  GameController.prototype.updateGame = function (car = this.game.car) {
-    console.log(car.position);
+  GameController.prototype.updateGame = function (car) {
     this.gameView.clearCanvas();
+    car.updatePosition();
     this.gameView.draw(car);
+  };
+
+  GameController.prototype.loop = function() {
+    controller.updateGame(controller.game.car);
   };
 
   exports.GameController = GameController;
