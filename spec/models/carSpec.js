@@ -1,10 +1,10 @@
 
 describe('Car', function() {
-  
+
 
   describe('a default car', function() {
     var car = new Car();
-    
+
     it("exists", function(){
       expect(car).toBeDefined();
     });
@@ -56,12 +56,22 @@ describe('Car', function() {
     });
   });
 
- describe('car methods', function(){
-   var car = new Car();
-   
+ describe('methods', function(){
+   var car;
+
+   beforeEach(function(){
+     car = new Car();
+   })
+
    it("accelerate increases the speed",function(){
     car.accelerate();
     expect(car.speed).toEqual(0.1);
   });
+
+  it("updates the car's position",function(){
+    car.accelerate();
+    car.updatePosition();
+    expect(car.position).toEqual(0.1);
+ });
  });
 });

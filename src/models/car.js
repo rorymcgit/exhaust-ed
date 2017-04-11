@@ -12,5 +12,9 @@
     this.speed += 0.1;
   };
 
+  Car.prototype.updatePosition = function(){
+    this.position = this.position + this.speed;
+  };
+
   exports.Car = Car;
 })(this);

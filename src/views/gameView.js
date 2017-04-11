@@ -12,13 +12,12 @@
   };
 
   GameView.prototype.draw = function (car) {
-    car.position = car.position + car.speed;
     context = this.track.getContext('2d');
     context.fillStyle = car.colour;
     context.fillRect(car.position, 0, car.width, car.height);
   };
 
-  GameView.prototype.clearCanvas = function (context) {
+  GameView.prototype.clearCanvas = function () {
     context = this.track.getContext('2d');
     context.clearRect(0, 0, context.canvas.width, context.canvas.height);
   };
