@@ -5,7 +5,6 @@
     this.game = game;
     this.bindKeys();
     controller = this;
-
   }
 
   GameController.prototype.bindKeys = function () {

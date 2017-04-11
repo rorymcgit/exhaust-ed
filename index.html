@@ -17,11 +17,11 @@
 
   </div>
   <script>
-    window.onload = function() {
+    $( document ).ready(function() {
       var game = new Game();
       var gameView = new GameView(game);
       var gameController = new GameController(gameView, game);
-    }
+    });
    </script>
 </body>
 </html>
