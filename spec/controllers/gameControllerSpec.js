@@ -1,8 +1,6 @@
 
 var gameController = new GameController();
 
-
-
 describe("GameController", function() {
 
   it("binds the spacebar key to the keyup event", function() {

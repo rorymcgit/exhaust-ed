@@ -15,12 +15,16 @@
   Game.prototype.end = function() {
     this.playing = false;
     this._setEndTime();
-    return this._getDuration();
+    return this.getDuration();
   };
 
 
-  Game.prototype._getDuration = function () {
+  Game.prototype.getDuration = function () {
     return this.endTime - this.startTime;
+  };
+
+  Game.prototype.getCurrentDuration = function () {
+    return new Date() - this.startTime;
   };
 
   Game.prototype._isPlaying = function() {
@@ -34,8 +38,6 @@
   Game.prototype._setEndTime = function () {
     this.endTime = new Date();
   };
-
-
 
   exports.Game = Game;
 })(this);

@@ -30,6 +30,7 @@
     this.gameView.clearCanvas();
     car.updatePosition();
     this.gameView.draw(car);
+    this._flashLapTime("Current lap time: " + (this.game.getCurrentDuration() / 1000.0));
   };
 
   GameController.prototype.reachedFinishLine = function (car) {
@@ -38,7 +39,6 @@
 
   GameController.prototype._loop = function() {
     controller.updateGame(controller.game.car);
-
     if(controller.reachedFinishLine(controller.game.car)){
       clearInterval(controller.intervalTimer);
       controller._flashLapTime(controller.gameView.getDurationString(controller.game.end()));
@@ -46,7 +46,7 @@
   };
 
   GameController.prototype._flashLapTime = function(message){
-    window.alert(message);
+    $('#score_container').html('<h1>' + message + '</h1>');
   };
 
   exports.GameController = GameController;
