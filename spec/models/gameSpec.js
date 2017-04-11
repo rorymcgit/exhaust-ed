@@ -1,6 +1,6 @@
-var game = new Game();
 
 describe("Game", function() {
+  var game = new Game();
   it("exists", function() {
     expect(game).toBeDefined();
   });
@@ -25,13 +25,13 @@ describe("Game", function() {
   });
 
   it("sets the start time", function(){
-    game.setStartTime();
+    game._setStartTime();
     expect(game.startTime).not.toBe(null);
   });
 
   it("sets the end time", function(){
-    game.setStartTime();
-    game.setEndTime();
+    game._setStartTime();
+    game._setEndTime();
     expect(game.endTime).not.toBe(null);
   });
 
@@ -39,10 +39,33 @@ describe("Game", function() {
     var dummyStartDate = new Date(2017,4,5,10,0,0);
     var dummyEndDate = new Date(2017,4,5,10,0,5);
     var spy = spyOn(window, 'Date').and.returnValue(dummyStartDate);
-    game.setStartTime();
+    game._setStartTime();
     spy.and.returnValue(dummyEndDate);
-    game.setEndTime();
-    expect(game.getDuration()).toEqual(5000);
+    game._setEndTime();
+    expect(game._getDuration()).toEqual(5000);
+  });
+});
+
+describe("Game functionality", function(){
+  var game = new Game();
+
+  it("starts timing when the game begins", function(){
+    game.begin();
+    expect(game.startTime).not.toBe(null);
   });
 
+  it("ends timing when the game ends", function(){
+    game.begin();
+    game.end();
+    expect(game.endTime).not.toBe(null);
+  });
+
+  it("calculates duration at the end of a game", function(){
+    var dummyStartDate = new Date(2017,4,5,10,0,0);
+    var dummyEndDate = new Date(2017,4,5,10,0,5);
+    var spy = spyOn(window, 'Date').and.returnValue(dummyStartDate);
+    game.begin();
+    spy.and.returnValue(dummyEndDate);
+    expect(game.end()).toEqual(5000);
+  });
 });
