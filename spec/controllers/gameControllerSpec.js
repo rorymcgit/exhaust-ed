@@ -26,6 +26,7 @@ describe("GameController", function() {
     spyOn(car, 'getPosition').and.returnValue(1460);
     expect(gameController.reachedFinishLine(car)).toBe(true);
   });
+
 });
 
 //Inject window

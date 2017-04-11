@@ -22,5 +22,9 @@
     context.clearRect(0, 0, context.canvas.width, context.canvas.height);
   };
 
+  GameView.prototype.getDurationString = function (duration) {
+    return "Your lap time was: " + (duration /  1000.0);
+  };
+
   exports.GameView = GameView;
 })(this);

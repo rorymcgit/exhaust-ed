@@ -4,6 +4,7 @@
     this.gameView = gameView;
     this.game = game;
     this.bindKeys();
+    this.intervalTimer;
     controller = this;
   }
 
@@ -20,8 +21,7 @@
 
       if (!this.game._isPlaying()) {
         this.game.begin();
-
-        setInterval(this.loop, 1);
+        this.intervalTimer = setInterval(this._loop, 1);
       }
     }
   };
@@ -36,8 +36,17 @@
     return car.getPosition() >= 1460;
   };
 
-  GameController.prototype.loop = function() {
+  GameController.prototype._loop = function() {
     controller.updateGame(controller.game.car);
+
+    if(controller.reachedFinishLine(controller.game.car)){
+      clearInterval(controller.intervalTimer);
+      controller._flashLapTime(controller.gameView.getDurationString(controller.game.end()));
+    }
+  };
+
+  GameController.prototype._flashLapTime = function(message){
+    window.alert(message);
   };
 
   exports.GameController = GameController;
