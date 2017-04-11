@@ -3,8 +3,8 @@
   function GameController(gameView = new GameView(), game = new Game()) {
     this.gameView = gameView;
     this.game = game;
-    this.bindKeys();
     this.intervalTimer;
+    this.bindKeys();
     controller = this;
   }
 
@@ -15,11 +15,10 @@
   };
 
   GameController.prototype.keyPressed = function (key) {
-    // console.log(args);
     if(key.keyCode == 32){
       this.game.car.accelerate();
-
       if (!this.game._isPlaying()) {
+        document.getElementById('welcome_message').style.display = 'none';  
         this.game.begin();
         this.intervalTimer = setInterval(this._loop, 1);
       }
@@ -27,14 +26,14 @@
   };
 
   GameController.prototype.updateGame = function (car) {
-    this.gameView.clearCanvas();
     car.updatePosition();
+    this.gameView.clearCanvas();
     this.gameView.draw(car);
     this._flashLapTime("Current lap time: " + (this.game.getCurrentDuration() / 1000.0));
   };
 
   GameController.prototype.reachedFinishLine = function (car) {
-    return car.getPosition() >= 1460;
+    return car.getPosition().xCoord >= 1460;
   };
 
   GameController.prototype._loop = function() {

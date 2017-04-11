@@ -14,7 +14,7 @@
   GameView.prototype.draw = function (car) {
     context = this.track.getContext('2d');
     context.fillStyle = car.colour;
-    context.fillRect(car.position, 0, car.width, car.height);
+    context.fillRect(car.xPosition, car.yPosition, car.width, car.height);
   };
 
   GameView.prototype.clearCanvas = function () {
