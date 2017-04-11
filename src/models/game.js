@@ -1,9 +1,10 @@
 (function(exports) {
 
-  function Game() {
+  function Game(car = new Car()) {
     this.playing = false;
     this.startTime = null;
     this.endTime = null;
+    this.car = car;
   }
 
   Game.prototype.begin = function() {

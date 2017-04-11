@@ -5,6 +5,10 @@ describe("Game", function() {
     expect(game).toBeDefined();
   });
 
+  it("has a car", function() {
+    expect(game.car instanceof Car).toBe(true);
+  });
+
   it("has a start time", function() {
     expect(game.startTime).toBeDefined();
   });

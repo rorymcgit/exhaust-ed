@@ -1,8 +1,8 @@
 (function(exports) {
 
-  function GameController(view, model) {
-    this.gameView = view;
-    this.game = model;
+  function GameController(gameView, game) {
+    this.gameView = gameView;
+    this.game = game;
   }
 
   GameController.prototype.bindKeys = function () {
