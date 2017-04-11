@@ -25,15 +25,19 @@ describe('Car', function() {
       expect(car.speed).toEqual(0);
     });
 
-    it('has a default position', function(){
-      expect(car.position).toEqual(0);
+    it('has a default X position', function(){
+      expect(car.xPosition).toEqual(0);
+    });
+
+    it('has a default Y position', function(){
+      expect(car.yPosition).toEqual(0);
     });
 
   });
 
   describe('a custom car', function() {
 
-    var car = new Car(60, 30, "blue", 1, 10);
+    var car = new Car(60, 30, "blue", 1, 10, 10);
 
     it('has a width 60', function(){
       expect(car.width).toEqual(60);
@@ -51,8 +55,12 @@ describe('Car', function() {
       expect(car.speed).toEqual(1);
     });
 
-    it('has a position of 10', function(){
-      expect(car.position).toEqual(10);
+    it('has an X position of 10', function(){
+      expect(car.xPosition).toEqual(10);
+    });
+
+    it('has a Y position of 10', function(){
+      expect(car.yPosition).toEqual(10);
     });
   });
 
@@ -71,7 +79,7 @@ describe('Car', function() {
   it("updates the car's position",function(){
     car.accelerate();
     car.updatePosition();
-    expect(car.position).toEqual(0.1);
+    expect(car.xPosition).toEqual(0.1);
  });
  });
 });

@@ -18,12 +18,12 @@
     return this.getDuration();
   };
 
-
   Game.prototype.getDuration = function () {
     return this.endTime - this.startTime;
   };
 
   Game.prototype.getCurrentDuration = function () {
+    if (this.startTime == null) return 0;
     return new Date() - this.startTime;
   };
 
