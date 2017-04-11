@@ -6,6 +6,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <script src="src/models/game.js"></script>
+  <script src="src/models/car.js"></script>
   <script src="src/controllers/gameController.js"></script>
   <script src="src/views/gameView.js"></script>
 
@@ -16,9 +17,9 @@
 
   </div>
   <script>
-  var game = Game(),
-      gameView = GameView(game),
-      gameController = GameController(gameView, game);
+    var game = new Game();
+    var gameView = new GameView(game);
+    var gameController = new GameController(gameView, game);
   </script>
 </body>
 </html>
