@@ -14,7 +14,7 @@ describe("GameController", function() {
     gameController.bindKeys();
     var e = new KeyboardEvent('keyup',{'keyCode':32,'which':32});
     window.dispatchEvent(e);
-    expect(mySpy).toHaveBeenCalled();
+    expect(mySpy).toHaveBeenCalledWith(e);
   });
 
 

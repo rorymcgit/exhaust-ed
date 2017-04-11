@@ -12,7 +12,7 @@
   };
 
   GameController.prototype.keyPressed = function (args) {
-
+    console.log(args);
   };
 
   exports.GameController = GameController;
