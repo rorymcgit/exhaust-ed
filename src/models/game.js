@@ -12,6 +12,7 @@
 
   Game.prototype.end = function() {
     this.playing = false;
+
   };
 
   Game.prototype.setStartTime = function () {
@@ -29,6 +30,7 @@
   Game.prototype._isPlaying = function() {
     return this.playing;
   };
+
 
   exports.Game = Game;
 })(this);
