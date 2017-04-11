@@ -13,8 +13,16 @@ describe("GameView", function() {
     expect(dummyElement.innerHTML).toEqual(canvasHTML);
   });
 
+  it("draws on the canvas", function(){
+    var spy = spyOn(gameView.track.getContext('2d'), 'fillRect').and.callThrough();
+    gameView.draw(new Car());
+    expect(spy).toHaveBeenCalled();
+  });
+
   it("clears the canvas", function() {
-    
+    var spy = spyOn(gameView.track.getContext('2d'), 'clearRect').and.callThrough();
+    gameView.clearCanvas();
+    expect(spy).toHaveBeenCalled();
   });
 
 });
