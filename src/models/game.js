@@ -8,28 +8,32 @@
 
   Game.prototype.begin = function() {
     this.playing = true;
+    this._setStartTime();
   };
 
   Game.prototype.end = function() {
     this.playing = false;
-
+    this._setEndTime();
+    return this._getDuration();
   };
 
-  Game.prototype.setStartTime = function () {
-    this.startTime = new Date();
-  };
 
-  Game.prototype.setEndTime = function () {
-    this.endTime = new Date();
-  };
-
-  Game.prototype.getDuration = function () {
+  Game.prototype._getDuration = function () {
     return this.endTime - this.startTime;
   };
 
   Game.prototype._isPlaying = function() {
     return this.playing;
   };
+
+  Game.prototype._setStartTime = function () {
+    this.startTime = new Date();
+  };
+
+  Game.prototype._setEndTime = function () {
+    this.endTime = new Date();
+  };
+
 
 
   exports.Game = Game;
