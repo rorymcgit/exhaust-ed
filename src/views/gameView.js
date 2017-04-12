@@ -34,7 +34,8 @@
 
   GameView.prototype.startCountdown = function (element = document.getElementById('countdown')) {
     element.innerHTML = '3';
-
+    setTimeout(function(){ element.innerHTML = '2'; }, 1000);
+    setTimeout(function(){ element.innerHTML = '1'; }, 2000);
   };
 
   GameView.prototype._drawFinishLine = function () {

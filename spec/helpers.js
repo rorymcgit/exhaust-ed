@@ -3,7 +3,6 @@ var mockInterface = function(){
   dummyElement = document.createElement('div');
   dummyElement.innerHTML = htmlString;
   document.body.appendChild(dummyElement);
-  console.log(dummyElement);
   return dummyElement;
 };
 

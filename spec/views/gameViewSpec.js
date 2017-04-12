@@ -47,25 +47,9 @@ describe('Timing Elements', function() {
   });
 
   it("starts a countdown when countdown function called", function() {
-    dummyElement2 = mockInterface();
-    // console.log(dummyElement2.childNodes[0].childNodes[1].innerHTML);
     gameView2.startCountdown(document.getElementById('test-countdown'));
-    expect(dummyElement2.childNodes[0].childNodes[1].innerHTML).toEqual('3')
-    // unmockInterface(dummyElement2);
+    expect(dummyElement2.childNodes[0].childNodes[1].innerHTML).toEqual('3');
   });
-
-  // it("countdown continues to increment downwards", function() {
-  //   dummyElement2 = mockInterface();
-  //
-  //   console.log(dummyElement2.childNodes[0].childNodes[1].innerHTML);
-  //   gameView.startCountdown(document.getElementById('test-countdown'));
-  //   expect(dummyElement2.childNodes[0].childNodes[1].innerHTML).toEqual('3')
-  //   // unmockInterface(dummyElement2);
-  // });
-
-  // it("starts a countdown when spacebar is pressed", function() {
-  //   var spaceBar = new KeyboardEvent('keyup',{'keyCode':32,'which':32});
-  // });
 
   afterAll(function() {
     unmockInterface(dummyElement2);
