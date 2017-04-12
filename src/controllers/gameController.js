@@ -20,16 +20,16 @@
   GameController.prototype.keyPressed = function (key) {
     if(key.keyCode == 32){
       this.game.car.accelerate();
-      this.startGame();
+      if (!this.game.isPlaying()) {
+        this.startGame();
+      }
     }
   };
 
   GameController.prototype.startGame = function () {
-    if (!this.game.isPlaying()) {
       document.getElementById('welcome_message').style.display = 'none';
       this.game.begin();
       this.intervalTimer = setInterval(this._loop, 1);
-    }
   };
 
   GameController.prototype.updateGame = function (car) {
