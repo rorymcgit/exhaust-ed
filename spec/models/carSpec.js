@@ -86,7 +86,7 @@ describe('Car', function() {
 
   it("updates the car's position",function(){
     car.accelerate();
-    car.updatePosition();
+    car.moveForward();
     expect(car.getPosition()).toEqual({'xCoord': 0.05, 'yCoord':0});
   });
  });

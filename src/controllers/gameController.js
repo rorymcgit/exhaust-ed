@@ -24,6 +24,15 @@
         this.startGame();
       }
     }
+
+    if(key.keyCode == 38){
+      this.game.car.moveUp();
+    }
+
+    if(key.keyCode == 40){
+      this.game.car.moveDown();
+    }
+    // console.log(key.keyCode);
   };
 
   GameController.prototype.startGame = function () {
@@ -33,7 +42,8 @@
   };
 
   GameController.prototype.updateGame = function (car) {
-    car.updatePosition();
+    // console.log(car);
+    car.moveForward();
     this.gameView.clearCanvas();
     this.gameView.draw(car);
     this._flashLapTime("Current drag time: " + (this.game.getCurrentDuration() / 1000.0).toFixed(2));
