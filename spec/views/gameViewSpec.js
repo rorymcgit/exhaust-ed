@@ -30,32 +30,12 @@ describe("GameView", function() {
     expect(spy).toHaveBeenCalled();
   });
 
+  it("returns a string containing the lap duration", function(){
+    expect(gameView.getDurationString(30000)).toEqual("Your lap time was: 30 seconds");
+  });
+
   afterAll(function() {
     unmockInterface(dummyElement);
-  });
-});
-
-describe('Timing Elements', function() {
-
-  beforeAll(function() {
-    dummyElement2 = mockInterface();
-    gameView2 = new GameView(new Game());
-  });
-
-  it("returns a string containing the lap duration", function(){
-    expect(gameView2.getDurationString(30000)).toEqual("Your lap time was: 30 seconds");
-  });
-
-  // it("starts a game after countdown is completed", function() {
-  //   gameController = new GameController();
-  //   var spy = spyOn(gameController, 'startGame').and.callThrough();
-  //
-  //   gameView2.startCountdown(document.getElementById('test-countdown'));
-  //   expect(spy).toHaveBeenCalled();
-  // });
-
-  afterAll(function() {
-    unmockInterface(dummyElement2);
   });
 
 });
