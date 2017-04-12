@@ -1,16 +1,17 @@
 (function(exports) {
 
-  function Car(width = 40, height = 25, colour = "red", speed = 0, xPosition = 0, yPosition = 0) {
+  function Car(width = 40, height = 25, colour = "red", speed = 0, xPosition = 0, yPosition = 0, bhp = 0.05) {
     this.width = width;
     this.height = height;
     this.colour = colour;
     this.speed = speed;
     this.xPosition = xPosition;
     this.yPosition = yPosition;
+    this.bhp = bhp;
   }
 
   Car.prototype.accelerate = function(){
-    this.speed += 0.1;
+    this.speed += this.bhp;
   };
 
   Car.prototype.updatePosition = function(){

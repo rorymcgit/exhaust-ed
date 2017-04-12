@@ -17,6 +17,10 @@ describe('Car', function() {
       expect(car.height).toEqual(25);
     });
 
+    it('has a default bhp', function(){
+      expect(car.bhp).toEqual(0.05);
+    });
+
     it('has a default colour', function(){
       expect(car.colour).toEqual("red");
     });
@@ -37,7 +41,7 @@ describe('Car', function() {
 
   describe('a custom car', function() {
 
-    var car = new Car(60, 30, "blue", 1, 10, 10);
+    var car = new Car(60, 30, "blue", 1, 10, 10, 0.01);
 
     it('has a width 60', function(){
       expect(car.width).toEqual(60);
@@ -45,6 +49,10 @@ describe('Car', function() {
 
     it('has a height of 30', function(){
       expect(car.height).toEqual(30);
+    });
+
+    it('has a bhp', function(){
+      expect(car.bhp).toEqual(0.01);
     });
 
     it('has a colour of blue', function(){
@@ -73,13 +81,13 @@ describe('Car', function() {
 
    it("accelerate increases the speed",function(){
     car.accelerate();
-    expect(car.speed).toEqual(0.1);
+    expect(car.speed).toEqual(0.05);
    });
 
   it("updates the car's position",function(){
     car.accelerate();
     car.updatePosition();
-    expect(car.getPosition()).toEqual({'xCoord': 0.1, 'yCoord':0});
+    expect(car.getPosition()).toEqual({'xCoord': 0.05, 'yCoord':0});
   });
  });
 });
