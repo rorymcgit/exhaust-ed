@@ -10,9 +10,17 @@ var unmockInterface = function(dummyElement){
   document.body.removeChild(dummyElement);
 }
 
-var mockEvent = function(code){
+var mockEventKeyup = function(code){
   var mockEvent = document.createEvent("Events");
   mockEvent.initEvent("keyup",true, true);
+  mockEvent.keyCode = code;
+  mockEvent.which = code;
+  return mockEvent;
+}
+
+var mockEventKeydown = function(code){
+  var mockEvent = document.createEvent("Events");
+  mockEvent.initEvent("keydown",true, true);
   mockEvent.keyCode = code;
   mockEvent.which = code;
   return mockEvent;

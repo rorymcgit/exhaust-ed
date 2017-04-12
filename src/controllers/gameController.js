@@ -10,21 +10,25 @@
   }
 
   GameController.prototype.bindKeys = function () {
-    window.addEventListener('keyup', this._pressKeyHandler, false);
+    window.addEventListener('keyup', this._keyupHandler, false);
+    window.addEventListener('keydown', this._keydownHandler, false);
   };
 
   GameController.prototype.unbindKeys = function () {
-    window.removeEventListener('keyup', this._pressKeyHandler, false);
+    window.removeEventListener('keyup', this._keyupHandler, false);
+    window.removeEventListener('keydown', this._keydownHandler, false);
   };
 
-  GameController.prototype.keyPressed = function (key) {
+  GameController.prototype.keyup = function (key) {
     if(key.keyCode == 32){
       this.game.car.accelerate();
       if (!this.game.isPlaying()) {
         this.startGame();
       }
     }
+  };
 
+  GameController.prototype.keydown = function (key) {
     if(key.keyCode == 38){
       this.game.car.moveUp();
     }
@@ -66,8 +70,12 @@
     $('#score_container').html('<h1>' + message + '</h1>');
   };
 
-  GameController.prototype._pressKeyHandler = function(e) {
-    controller.keyPressed(e);
+  GameController.prototype._keyupHandler = function(e) {
+    controller.keyup(e);
+  };
+
+  GameController.prototype._keydownHandler = function(e) {
+    controller.keydown(e);
   };
 
   exports.GameController = GameController;
