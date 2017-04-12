@@ -11,14 +11,14 @@ carDouble.prototype = {
   moveForward: function() {
   },
   moveUp: function() {
-  // console.log("hello");
+    // console.log("hello");
   },
   moveDown: function() {
   },
   accelerate: function(){
   },
   getPosition: function(){
-      return {'xCoord' : this.xPosition, 'yCoord' : this.yPosition};
+    return {'xCoord' : this.xPosition, 'yCoord' : this.yPosition};
   }
 };
 
@@ -67,54 +67,119 @@ describe("GameController", function() {
     expect(spyAddEventListener).toHaveBeenCalledWith('keydown', gameController._keydownHandler, false);
   });
 
+  describe("spacebar has been pressed", function(){
+    var myKeyPressSpy;
+    var keyEventDown;
 
-  it("pressKeyHandler is called with a key", function() {
-    var myCarSpyAccelerate = spyOn(car, 'accelerate').and.callThrough();
-    var myKeyPressSpy = spyOn(gameController, 'keyup').and.callThrough();
-    var spacebarEvent = mockEventKeyup(32);
-    window.dispatchEvent(spacebarEvent);
-    expect(myKeyPressSpy).toHaveBeenCalledWith(spacebarEvent);
-    expect(myCarSpyAccelerate).toHaveBeenCalled();
+    beforeEach(function(){
+      myKeyPressSpyDown = spyOn(gameController, 'keydown').and.callThrough();
+      myKeyPressSpyUp = spyOn(gameController, 'keyup').and.callThrough();
+      keyEventDown = mockEventKeydown(32);
+      window.dispatchEvent(keyEventDown);
+    })
+
+    it("_keydownHandler is called with a spacebar key and added to keys", function() {
+      expect(gameController.keys[32]).toBe(true);
+      expect(gameController.keys).toEqual({32 : true});
+      expect(myKeyPressSpyDown).toHaveBeenCalledWith(keyEventDown);
+    });
+
+    it("_keyupHandler is called with a spacebar key and removed from keys", function() {
+      keyEventUp = mockEventKeyup(32);
+      window.dispatchEvent(keyEventUp);
+      expect(gameController.keys[32]).toBe(undefined);
+      expect(gameController.keys).toEqual({});
+      expect(myKeyPressSpyUp).toHaveBeenCalledWith(keyEventUp);
+    });
+
+    it("accelerate was called on the car when spacebar goes up", function(){
+      var carSpy = spyOn(gameController.game.car, 'accelerate').and.callThrough();
+      gameController.countdownFinished = true;
+      keyEventUp = mockEventKeyup(32);
+      window.dispatchEvent(keyEventUp);
+      expect(carSpy).toHaveBeenCalled();
+    })
   });
 
-  it("_keydownHandler is called with a spacebar key and added to keys", function() {
-    var myKeyPressSpy = spyOn(gameController, 'keydown').and.callThrough();
-    var keyEvent = mockEventKeydown(38);
-    window.dispatchEvent(keyEvent);
-    expect(gameController.keys[38]).toBe(true);
-    expect(gameController.keys).toEqual({38 : true});
-    expect(myKeyPressSpy).toHaveBeenCalledWith(keyEvent);
+  describe("enter has been pressed", function(){
+    var myKeyPressSpy;
+    var keyEventDown;
+
+    beforeEach(function(){
+      myKeyPressSpyDown = spyOn(gameController, 'keydown').and.callThrough();
+      myKeyPressSpyUp = spyOn(gameController, 'keyup').and.callThrough();
+      keyEventDown = mockEventKeydown(13);
+      window.dispatchEvent(keyEventDown);
+    });
+
+    it("_keydownHandler is called with an enter key and added to keys", function() {
+      expect(gameController.keys[13]).toBe(true);
+      expect(gameController.keys).toEqual({13 : true});
+      expect(myKeyPressSpyDown).toHaveBeenCalledWith(keyEventDown);
+    });
+
+    it("_keyupHandler is called with an enter key and removed from keys", function() {
+      var keyEventUp = mockEventKeyup(13);
+      window.dispatchEvent(keyEventUp);
+      expect(gameController.keys[13]).toBe(undefined);
+      expect(gameController.keys).toEqual({});
+      expect(myKeyPressSpyUp).toHaveBeenCalledWith(keyEventUp);
+    });
+
   });
 
-  it("_keyupHandler is called with a spacebar key and added to keys", function() {
-    var myKeyPressSpy = spyOn(gameController, 'keyup').and.callThrough();
-    var keyEventDown = mockEventKeydown(38);
-    window.dispatchEvent(keyEventDown);
-    var keyEventRelease = mockEventKeyup(38);
-    window.dispatchEvent(keyEventRelease);
-    expect(gameController.keys[38]).toBe(undefined);
-    expect(gameController.keys).toEqual({});
-    expect(myKeyPressSpy).toHaveBeenCalledWith(keyEventRelease);
-  });
-  
-  it("_keydownHandler is called with an enter key and added to keys", function() {
-    var myKeyPressSpy = spyOn(gameController, 'keydown').and.callThrough();
-    var keyEvent = mockEventKeydown(13);
-    window.dispatchEvent(keyEvent);
-    expect(gameController.keys[13]).toBe(true);
-    expect(gameController.keys).toEqual({13 : true});
-    expect(myKeyPressSpy).toHaveBeenCalledWith(keyEvent);
+  describe("up arrow has been pressed", function(){
+    var myKeyPressSpy;
+    var keyEventDown;
+
+    beforeEach(function(){
+      myKeyPressSpyDown = spyOn(gameController, 'keydown').and.callThrough();
+      myKeyPressSpyUp = spyOn(gameController, 'keyup').and.callThrough();
+      keyEventDown = mockEventKeydown(38);
+      window.dispatchEvent(keyEventDown);
+    });
+
+    it("_keydownHandler is called with an up arrow key and added to keys", function() {
+      expect(gameController.keys[38]).toBe(true);
+      expect(gameController.keys).toEqual({38 : true});
+      expect(myKeyPressSpyDown).toHaveBeenCalledWith(keyEventDown);
+    });
+
+    it("_keyupHandler is called with an up arrow key and removed from keys", function() {
+      var keyEventUp = mockEventKeyup(38);
+      window.dispatchEvent(keyEventUp);
+      expect(gameController.keys[38]).toBe(undefined);
+      expect(gameController.keys).toEqual({});
+      expect(myKeyPressSpyUp).toHaveBeenCalledWith(keyEventUp);
+    });
+
   });
 
-  it("_keyupHandler is called with an enter key and added to keys", function() {
-    var myKeyPressSpy = spyOn(gameController, 'keyup').and.callThrough();
-    var keyEventDown = mockEventKeydown(13);
-    window.dispatchEvent(keyEventDown);
-    var keyEventRelease = mockEventKeyup(13);
-    window.dispatchEvent(keyEventRelease);
-    expect(gameController.keys[13]).toBe(undefined);
-    expect(gameController.keys).toEqual({});
-    expect(myKeyPressSpy).toHaveBeenCalledWith(keyEventRelease);
+  describe("down arrow has been pressed", function(){
+    var myKeyPressSpy;
+    var keyEventDown;
+
+    beforeEach(function(){
+      myKeyPressSpyDown = spyOn(gameController, 'keydown').and.callThrough();
+      myKeyPressSpyUp = spyOn(gameController, 'keyup').and.callThrough();
+      keyEventDown = mockEventKeydown(40);
+      window.dispatchEvent(keyEventDown);
+    });
+
+    it("_keydownHandler is called with a down arrow key and added to keys", function() {
+      expect(gameController.keys[40]).toBe(true);
+      expect(gameController.keys).toEqual({40 : true});
+      expect(myKeyPressSpyDown).toHaveBeenCalledWith(keyEventDown);
+    });
+
+    it("_keyupHandler is called with a down arrow key and removed from keys", function() {
+      var keyEventUp = mockEventKeyup(40);
+      window.dispatchEvent(keyEventUp);
+      expect(gameController.keys[40]).toBe(undefined);
+      expect(gameController.keys).toEqual({});
+      expect(myKeyPressSpyUp).toHaveBeenCalledWith(keyEventUp);
+    });
+
   });
 
   it("unbinds keyup & keydown events", function() {

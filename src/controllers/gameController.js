@@ -19,19 +19,19 @@
     window.removeEventListener('keyup', this._keyupHandler, false);
     window.removeEventListener('keydown', this._keydownHandler, false);
   };
-  
+
   GameController.prototype.keyup = function (key) {
-    this._removeKey(key);
     if(key.keyCode == 32){
        if(this.countdownFinished) {
-      this.game.car.accelerate();
+         this.game.car.accelerate();
+         if (!this.game.isPlaying()){
+           this.startGame();
+         }
        }
-      if (!this.game.isPlaying()) {
-        this.startGame();
-      }
     }
+      this._removeKey(key);
   };
-  
+
   GameController.prototype.keydown = function (key) {
     this._addKey(key);
      if(key.keyCode === 13){
