@@ -12,6 +12,7 @@
 
   Car.prototype.accelerate = function(){
     this.speed += this.bhp;
+    console.log('accelerating');
   };
 
   Car.prototype.updatePosition = function(){

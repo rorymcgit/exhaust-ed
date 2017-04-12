@@ -19,19 +19,24 @@
 
   GameController.prototype.keyPressed = function (key) {
     if(key.keyCode == 32){
-      this.game.car.accelerate();
-      if (!this.game.isPlaying() && this.gameView.countdownFinished === false) {
-        this.gameView.startCountdown();
-      }
-      else if (!this.game.isPlaying()) {
-        console.log('start game');
-        this.startGame();
+      // console.log('in keycode if');
+      // console.log(this.gameView.countdownFinished);
+      if(this.gameView.countdownFinished === true){
+        // console.log('countdown has finished');
+        this.game.car.accelerate();
       }
     }
-  };
+    if(key.keyCode == 13){
+      if (!this.game.isPlaying()) {
+        this.gameView.startCountdown();
+        if (this.gameView.countdownFinished) {
+          this.startGame();
+        }
+    }
+  }
+};
 
   GameController.prototype.startGame = function () {
-      document.getElementById('welcome_message').style.display = 'none';
       this.game.begin();
       this.intervalTimer = setInterval(this._loop, 1);
   };

@@ -4,6 +4,7 @@
     this.game = game;
     this.createCanvas();
     this.countdownFinished = false;
+    gameView = this;
   }
 
   GameView.prototype.createCanvas = function (element = document.getElementById('canvas_container')) {
@@ -37,7 +38,12 @@
     element.innerHTML = '3';
     setTimeout(function(){ element.innerHTML = '2'; }, 1000);
     setTimeout(function(){ element.innerHTML = '1'; }, 2000);
-    this.countdownFinished = true;
+    // console.log('1');
+    setTimeout(function(){ document.getElementById('welcome_message').style.display = 'none'; }, 3000);
+    setTimeout(function(){
+      gameView.countdownFinished = true;
+    }, 3000);
+    // this.countdownFinished = true;
   };
 
   GameView.prototype._drawFinishLine = function () {
