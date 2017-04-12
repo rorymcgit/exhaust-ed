@@ -7,6 +7,7 @@
     this.intervalTimer;
     this.bindKeys();
     this.updateGame(this.game.car);
+    this.keys = {};
   }
 
   GameController.prototype.bindKeys = function () {
@@ -20,6 +21,7 @@
   };
 
   GameController.prototype.keyup = function (key) {
+    this._removeKey(key);
     if(key.keyCode == 32){
       this.game.car.accelerate();
       if (!this.game.isPlaying()) {
@@ -29,25 +31,17 @@
   };
 
   GameController.prototype.keydown = function (key) {
-    if(key.keyCode == 38){
-      this.game.car.moveUp();
-    }
-
-    if(key.keyCode == 40){
-      this.game.car.moveDown();
-    }
-    console.log(key);
+    this._addKey(key);
   };
 
   GameController.prototype.startGame = function () {
-      document.getElementById('welcome_message').style.display = 'none';
-      this.game.begin();
-      this.intervalTimer = setInterval(this._loop, 1);
+    document.getElementById('welcome_message').style.display = 'none';
+    this.game.begin();
+    this.intervalTimer = setInterval(this._loop, 1);
   };
 
   GameController.prototype.updateGame = function (car) {
-    // console.log(car);
-    car.moveForward();
+    this._updateCarPosition(car);
     this.gameView.clearCanvas();
     this.gameView.draw(car);
     this._flashLapTime("Current drag time: " + (this.game.getCurrentDuration() / 1000.0).toFixed(2));
@@ -64,6 +58,26 @@
       controller.unbindKeys();
       controller._flashLapTime(controller.gameView.getDurationString(controller.game.end()));
     }
+  };
+
+  GameController.prototype._updateCarPosition = function (car) {
+    if(this.keys){
+      if(this.keys[38]){
+        car.moveUp();
+      }
+      if(this.keys[40]){
+        car.moveDown();
+      }
+    }
+    car.moveForward();
+  };
+
+  GameController.prototype._addKey = function (key) {
+    this.keys[key.which] = true;
+  };
+
+  GameController.prototype._removeKey = function (key) {
+    delete this.keys[key.which];
   };
 
   GameController.prototype._flashLapTime = function(message){

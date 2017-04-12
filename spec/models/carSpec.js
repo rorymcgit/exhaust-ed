@@ -102,7 +102,7 @@ describe('Car', function() {
 
   it("can move the car down",function(){
     car.moveDown();
-    expect(car.yPosition).toEqual(10);
+    expect(car.yPosition).toEqual(1);
   });
 
   it("cannot move the car down past Y = MAX",function(){
