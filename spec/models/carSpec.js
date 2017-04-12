@@ -73,7 +73,6 @@ describe('Car', function() {
   });
 
  describe('methods', function(){
-   var car;
 
    beforeEach(function(){
      car = new Car();
@@ -89,5 +88,28 @@ describe('Car', function() {
     car.moveForward();
     expect(car.getPosition()).toEqual({'xCoord': 0.05, 'yCoord':0});
   });
+
+  it("can move the car up",function(){
+    car.moveDown();
+    car.moveUp();
+    expect(car.yPosition).toEqual(0);
+  });
+
+  it("cannot move the car up post Y = 0",function(){
+    car.moveUp();
+    expect(car.yPosition).toEqual(0);
+  });
+
+  it("can move the car down",function(){
+    car.moveDown();
+    expect(car.yPosition).toEqual(10);
+  });
+
+  it("cannot move the car up post Y = MAX",function(){
+    car.yPosition = 275;
+    car.moveDown();
+    expect(car.yPosition).toEqual(275);
+  });
+
  });
 });

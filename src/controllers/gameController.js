@@ -32,7 +32,7 @@
     if(key.keyCode == 40){
       this.game.car.moveDown();
     }
-    // console.log(key.keyCode);
+    console.log(key);
   };
 
   GameController.prototype.startGame = function () {

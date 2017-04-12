@@ -24,12 +24,23 @@
   };
 
   Car.prototype.moveUp = function(){
-    // console.log("hi from real car");
-    this.yPosition = this.yPosition - this.turnSpeed;
+    if(this.yPosition >= this.turnSpeed){
+      this.yPosition = this.yPosition - this.turnSpeed;
+    }
+    else{
+      this.yPosition = 0;
+    }
   };
 
   Car.prototype.moveDown = function(){
-    this.yPosition = this.yPosition + this.turnSpeed;
+    var difference = 300 - (this.yPosition + this.height)
+    if(difference >= 10){
+      this.yPosition = this.yPosition + this.turnSpeed;
+    }
+    else{
+      this.yPosition = this.yPosition + difference;
+    }
+
   };
 
   exports.Car = Car;
