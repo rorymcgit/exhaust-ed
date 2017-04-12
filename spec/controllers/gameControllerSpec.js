@@ -60,7 +60,7 @@ describe("GameController", function() {
     gameController = new GameController(gameView, game);
   });
 
-  it("binds pressKeyHandler to the keyup event", function() {
+  it("binds handlers to the keyup and keydown events", function() {
     var spyAddEventListener = spyOn(window, 'addEventListener').and.callThrough();
     gameController.bindKeys();
     expect(spyAddEventListener).toHaveBeenCalledWith('keyup', gameController._keyupHandler, false);
@@ -68,7 +68,7 @@ describe("GameController", function() {
   });
 
 
-  it("pressKeyHandler is called with spacebar key", function() {
+  it("pressKeyHandler is called with a key", function() {
     var myCarSpyAccelerate = spyOn(car, 'accelerate').and.callThrough();
     var myKeyPressSpy = spyOn(gameController, 'keyup').and.callThrough();
     var spacebarEvent = mockEventKeyup(32);
@@ -77,7 +77,7 @@ describe("GameController", function() {
     expect(myCarSpyAccelerate).toHaveBeenCalled();
   });
 
-  it("_keydownHandler is called with a key and added to keys", function() {
+  it("_keydownHandler is called with a spacebar key and added to keys", function() {
     var myKeyPressSpy = spyOn(gameController, 'keydown').and.callThrough();
     var keyEvent = mockEventKeydown(38);
     window.dispatchEvent(keyEvent);
@@ -86,7 +86,7 @@ describe("GameController", function() {
     expect(myKeyPressSpy).toHaveBeenCalledWith(keyEvent);
   });
 
-  it("_keyupHandler is called with a key and added to keys", function() {
+  it("_keyupHandler is called with a spacebar key and added to keys", function() {
     var myKeyPressSpy = spyOn(gameController, 'keyup').and.callThrough();
     var keyEventDown = mockEventKeydown(38);
     window.dispatchEvent(keyEventDown);
@@ -96,9 +96,28 @@ describe("GameController", function() {
     expect(gameController.keys).toEqual({});
     expect(myKeyPressSpy).toHaveBeenCalledWith(keyEventRelease);
   });
+  
+  it("_keydownHandler is called with an enter key and added to keys", function() {
+    var myKeyPressSpy = spyOn(gameController, 'keydown').and.callThrough();
+    var keyEvent = mockEventKeydown(13);
+    window.dispatchEvent(keyEvent);
+    expect(gameController.keys[13]).toBe(true);
+    expect(gameController.keys).toEqual({13 : true});
+    expect(myKeyPressSpy).toHaveBeenCalledWith(keyEvent);
+  });
 
+  it("_keyupHandler is called with an enter key and added to keys", function() {
+    var myKeyPressSpy = spyOn(gameController, 'keyup').and.callThrough();
+    var keyEventDown = mockEventKeydown(13);
+    window.dispatchEvent(keyEventDown);
+    var keyEventRelease = mockEventKeyup(13);
+    window.dispatchEvent(keyEventRelease);
+    expect(gameController.keys[13]).toBe(undefined);
+    expect(gameController.keys).toEqual({});
+    expect(myKeyPressSpy).toHaveBeenCalledWith(keyEventRelease);
+  });
 
-  it("unbinds the spacebar key to the keyup & keydown events", function() {
+  it("unbinds keyup & keydown events", function() {
     var spyRemoveEventListener = spyOn(window, 'removeEventListener').and.callThrough();
     var myKeyupSpy = spyOn(gameController, 'keyup').and.callThrough();
     var myKeydownSpy = spyOn(gameController, 'keydown').and.callThrough();
@@ -113,22 +132,28 @@ describe("GameController", function() {
     expect(myKeydownSpy).not.toHaveBeenCalled();
   });
 
-  it("reached finish line returns false if the car has not reached the right edge of canvas", function() {
-    car = new Car();
-    spyOn(car, 'getPosition').and.returnValue({'xCoord' : 955, 'yCoord' : 0});
-    expect(gameController.reachedFinishLine(car)).toBe(false);
+  describe("finish line", function() {
+    it("reached finish line returns false if the car has not reached the right edge of canvas", function() {
+      car = new Car();
+      spyOn(car, 'getPosition').and.returnValue({'xCoord' : 955, 'yCoord' : 0});
+      expect(gameController.reachedFinishLine(car)).toBe(false);
+    });
+
+    it("reached finish line returns true when the car reaches the right edge of canvas", function() {
+      car = new Car();
+      spyOn(car, 'getPosition').and.returnValue({'xCoord' : 1500, 'yCoord' : 0});
+      expect(gameController.reachedFinishLine(car)).toBe(true);
+    });
   });
 
-  it("reached finish line returns true when the car reaches the right edge of canvas", function() {
-    car = new Car();
-    spyOn(car, 'getPosition').and.returnValue({'xCoord' : 1500, 'yCoord' : 0});
-    expect(gameController.reachedFinishLine(car)).toBe(true);
+  describe("countdown", function() {
+    it("starts a countdown when countdown function called", function() {
+      gameController.startCountdown();
+      expect(dummyElement.childNodes[0].childNodes[1].innerHTML).toEqual('3');
+    });
   });
 
   afterAll(function() {
     unmockInterface(dummyElement);
   });
-
 });
-
-//Inject window

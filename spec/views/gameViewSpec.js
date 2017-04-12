@@ -31,7 +31,7 @@ describe("GameView", function() {
   });
 
   it("returns a string containing the lap duration", function(){
-    expect(gameView.getDurationString(30000)).toEqual("Your lap time was: 30")
+    expect(gameView.getDurationString(30000)).toEqual("Your lap time was: 30 seconds");
   });
 
   afterAll(function() {

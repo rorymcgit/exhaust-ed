@@ -19,32 +19,43 @@
     window.removeEventListener('keyup', this._keyupHandler, false);
     window.removeEventListener('keydown', this._keydownHandler, false);
   };
-
+  
   GameController.prototype.keyup = function (key) {
     this._removeKey(key);
     if(key.keyCode == 32){
+       if(this.countdownFinished) {
       this.game.car.accelerate();
+       }
       if (!this.game.isPlaying()) {
         this.startGame();
       }
     }
   };
-
+  
   GameController.prototype.keydown = function (key) {
     this._addKey(key);
+     if(key.keyCode === 13){
+      if((!this.game.isPlaying()) && (!this.countdownStarted)) {
+        this.startCountdown();
+      }
+    }
+  };
+
+  GameController.prototype.startCountdown = function () {
+    this.countdownStarted = true;
+    this._initializeTimeouts();
   };
 
   GameController.prototype.startGame = function () {
-    document.getElementById('welcome_message').style.display = 'none';
-    this.game.begin();
-    this.intervalTimer = setInterval(this._loop, 1);
+      this.game.begin();
+      this.intervalTimer = setInterval(this._loop, 1);
   };
 
   GameController.prototype.updateGame = function (car) {
     this._updateCarPosition(car);
     this.gameView.clearCanvas();
     this.gameView.draw(car);
-    this._flashLapTime("Current drag time: " + (this.game.getCurrentDuration() / 1000.0).toFixed(2));
+    this._flashLapTime("Current drag time: " + (this.game.getCurrentDuration() / 1000.0).toFixed(2) + " seconds");
   };
 
   GameController.prototype.reachedFinishLine = function (car) {
@@ -84,12 +95,24 @@
     $('#score_container').html('<h1>' + message + '</h1>');
   };
 
+
   GameController.prototype._keyupHandler = function(e) {
     controller.keyup(e);
   };
 
   GameController.prototype._keydownHandler = function(e) {
     controller.keydown(e);
+  };
+
+  GameController.prototype._initializeTimeouts = function (element = document.getElementById('countdown')) {
+    element.innerHTML = '3';
+    setTimeout(function(){ element.innerHTML = '2'; }, 1000);
+    setTimeout(function(){ element.innerHTML = '1'; }, 2000);
+    setTimeout(function(){
+      document.getElementById('welcome_message').style.display = 'none';
+      controller.countdownFinished = true;
+      controller.startGame();
+    }, 3000);
   };
 
   exports.GameController = GameController;
