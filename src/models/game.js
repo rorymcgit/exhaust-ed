@@ -27,7 +27,7 @@
     return new Date() - this.startTime;
   };
 
-  Game.prototype._isPlaying = function() {
+  Game.prototype.isPlaying = function() {
     return this.playing;
   };
 

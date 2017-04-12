@@ -1,7 +1,12 @@
 
-var gameController = new GameController();
+var gameController;
+var dummyElement;
 
 describe("GameController", function() {
+  beforeAll(function() {
+    dummyElement = mockInterface();
+    gameController = new GameController()
+  });
 
   it("binds the spacebar key to the keyup event", function() {
     var spyAddEventListener = spyOn(window, 'addEventListener').and.callThrough();
@@ -33,6 +38,10 @@ describe("GameController", function() {
     car = new Car();
     spyOn(car, 'getPosition').and.returnValue({'xCoord' : 1500, 'yCoord' : 0});
     expect(gameController.reachedFinishLine(car)).toBe(true);
+  });
+
+  afterAll(function() {
+    unmockInterface(dummyElement);
   });
 
 });

@@ -69,17 +69,17 @@ describe('Car', function() {
 
    beforeEach(function(){
      car = new Car();
-   })
+   });
 
    it("accelerate increases the speed",function(){
     car.accelerate();
     expect(car.speed).toEqual(0.1);
-  });
+   });
 
   it("updates the car's position",function(){
     car.accelerate();
     car.updatePosition();
-    expect(car.xPosition).toEqual(0.1);
- });
+    expect(car.getPosition()).toEqual({'xCoord': 0.1, 'yCoord':0});
+  });
  });
 });

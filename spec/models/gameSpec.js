@@ -17,15 +17,19 @@ describe("Game", function() {
     expect(game.endTime).toBeDefined();
   });
 
+  it("has a playing variable", function() {
+    expect(game.playing).toBeDefined();
+  });
+
   it("starts", function() {
     game.begin();
-    expect(game._isPlaying()).toEqual(true);
+    expect(game.isPlaying()).toEqual(true);
   });
 
   it("ends", function() {
     game.begin();
     game.end();
-    expect(game._isPlaying()).toEqual(false);
+    expect(game.isPlaying()).toEqual(false);
   });
 
   it("sets the start time", function(){

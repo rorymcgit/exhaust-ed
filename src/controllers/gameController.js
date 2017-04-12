@@ -25,7 +25,7 @@
   };
 
   GameController.prototype.startGame = function () {
-    if (!this.game._isPlaying()) {
+    if (!this.game.isPlaying()) {
       document.getElementById('welcome_message').style.display = 'none';
       this.game.begin();
       this.intervalTimer = setInterval(this._loop, 1);
