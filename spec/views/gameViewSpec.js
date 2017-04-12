@@ -30,23 +30,45 @@ describe("GameView", function() {
     expect(spy).toHaveBeenCalled();
   });
 
+  afterAll(function() {
+    unmockInterface(dummyElement);
+  });
+});
+
+describe('Timing Elements', function() {
+
+  beforeAll(function() {
+    dummyElement2 = mockInterface();
+    gameView2 = new GameView(new Game());
+  });
+
   it("returns a string containing the lap duration", function(){
-    expect(gameView.getDurationString(30000)).toEqual("Your lap time was: 30");
+    expect(gameView2.getDurationString(30000)).toEqual("Your lap time was: 30");
   });
 
   it("starts a countdown when countdown function called", function() {
     dummyElement2 = mockInterface();
-    console.log(dummyElement2.childNodes[0].childNodes[1].innerHTML);
-    // gameView.startCountdown();
-
+    // console.log(dummyElement2.childNodes[0].childNodes[1].innerHTML);
+    gameView2.startCountdown(document.getElementById('test-countdown'));
+    expect(dummyElement2.childNodes[0].childNodes[1].innerHTML).toEqual('3')
+    // unmockInterface(dummyElement2);
   });
+
+  // it("countdown continues to increment downwards", function() {
+  //   dummyElement2 = mockInterface();
+  //
+  //   console.log(dummyElement2.childNodes[0].childNodes[1].innerHTML);
+  //   gameView.startCountdown(document.getElementById('test-countdown'));
+  //   expect(dummyElement2.childNodes[0].childNodes[1].innerHTML).toEqual('3')
+  //   // unmockInterface(dummyElement2);
+  // });
 
   // it("starts a countdown when spacebar is pressed", function() {
   //   var spaceBar = new KeyboardEvent('keyup',{'keyCode':32,'which':32});
   // });
 
   afterAll(function() {
-    unmockInterface(dummyElement);
+    unmockInterface(dummyElement2);
   });
 
 });

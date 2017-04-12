@@ -32,6 +32,11 @@
     this._drawFinishLine();
   };
 
+  GameView.prototype.startCountdown = function (element = document.getElementById('countdown')) {
+    element.innerHTML = '3';
+
+  };
+
   GameView.prototype._drawFinishLine = function () {
     context = this.track.getContext('2d');
     context.beginPath();
