@@ -44,7 +44,7 @@
     car.updatePosition();
     this.gameView.clearCanvas();
     this.gameView.draw(car);
-    this._flashLapTime("Current drag time: " + (this.game.getCurrentDuration() / 1000.0).toFixed(2));
+    this._flashLapTime("Current drag time: " + (this.game.getCurrentDuration() / 1000.0).toFixed(2) + " seconds");
   };
 
   GameController.prototype.reachedFinishLine = function (car) {

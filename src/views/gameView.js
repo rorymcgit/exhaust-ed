@@ -24,7 +24,7 @@
   };
 
   GameView.prototype.getDurationString = function (duration) {
-    return "Your lap time was: " + (duration /  1000.0);
+    return "Your lap time was: " + (duration /  1000.0) + " seconds";
   };
 
   GameView.prototype._drawLines = function() {
