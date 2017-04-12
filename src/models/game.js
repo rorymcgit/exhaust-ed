@@ -23,7 +23,7 @@
   };
 
   Game.prototype.getCurrentDuration = function () {
-    if (this.startTime == null) return 0;
+    if (this.startTime === null) return 0;
     return new Date() - this.startTime;
   };
 
