@@ -14,7 +14,8 @@
   GameView.prototype.draw = function (car) {
     context = this.track.getContext('2d');
     context.fillStyle = car.colour;
-    context.fillRect(car.position, 0, car.width, car.height);
+    context.fillRect(car.xPosition, car.yPosition, car.width, car.height);
+    this._drawLines(context);
   };
 
   GameView.prototype.clearCanvas = function () {
@@ -24,6 +25,29 @@
 
   GameView.prototype.getDurationString = function (duration) {
     return "Your lap time was: " + (duration /  1000.0);
+  };
+
+  GameView.prototype._drawLines = function() {
+    this._drawStartLine();
+    this._drawFinishLine();
+  };
+
+  GameView.prototype._drawFinishLine = function () {
+    context = this.track.getContext('2d');
+    context.beginPath();
+    context.strokeStyle = 'red';
+    context.moveTo(this.track.width - this.game.car.width,0);
+    context.lineTo(this.track.width - this.game.car.width,this.track.height);
+    context.stroke();
+  };
+
+  GameView.prototype._drawStartLine = function () {
+    context = this.track.getContext('2d');
+    context.beginPath();
+    context.strokeStyle = 'green';
+    context.moveTo(this.game.car.width,0);
+    context.lineTo(this.game.car.width,this.track.height);
+    context.stroke();
   };
 
   exports.GameView = GameView;

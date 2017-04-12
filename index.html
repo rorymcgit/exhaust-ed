@@ -3,25 +3,24 @@
 <head>
   <meta charset="utf-8">
   <title>Fast and Furryous</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+  <script src="assets/jquery-3.2.1.min.js"></script>
   <script src="src/models/game.js"></script>
   <script src="src/models/car.js"></script>
   <script src="src/controllers/gameController.js"></script>
   <script src="src/views/gameView.js"></script>
-
+  <script src="assets/init.js"></script>
 </head>
 
 <body>
-  <div id='canvas_container'>
-
-  </div>
-  <script>
-    $( document ).ready(function() {
-      var game = new Game();
-      var gameView = new GameView(game);
-      var gameController = new GameController(gameView, game);
-    });
-   </script>
+  <center>
+    <h1 style="color:red;">~~~> Fast &amp; Furryous <~~~</h1>
+    <div id="welcome_message" style="z-index: 100;position:absolute;left:600px;top:200px;border: 1px solid black;padding:0px 15px 0px 15px;'">
+      <h2>Press Space to begin and then start mashing!</h2>
+    </div>
+    <div id='canvas_container'>
+    </div>
+    <div id='score_container'>
+    </div>
+  </center>
 </body>
 </html>
