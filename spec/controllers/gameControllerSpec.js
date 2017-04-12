@@ -5,7 +5,7 @@ var dummyElement;
 describe("GameController", function() {
   beforeAll(function() {
     dummyElement = mockInterface();
-    gameController = new GameController()
+    gameController = new GameController();
   });
 
   it("binds the spacebar key to the keyup event", function() {

@@ -31,8 +31,19 @@ describe("GameView", function() {
   });
 
   it("returns a string containing the lap duration", function(){
-    expect(gameView.getDurationString(30000)).toEqual("Your lap time was: 30")
+    expect(gameView.getDurationString(30000)).toEqual("Your lap time was: 30");
   });
+
+  it("starts a countdown when countdown function called", function() {
+    dummyElement2 = mockInterface();
+    console.log(dummyElement2.childNodes[0].childNodes[1].innerHTML);
+    // gameView.startCountdown();
+
+  });
+
+  // it("starts a countdown when spacebar is pressed", function() {
+  //   var spaceBar = new KeyboardEvent('keyup',{'keyCode':32,'which':32});
+  // });
 
   afterAll(function() {
     unmockInterface(dummyElement);
