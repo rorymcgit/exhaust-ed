@@ -17,18 +17,21 @@
     window.removeEventListener('keyup', this._pressKeyHandler, false);
   };
 
-  GameController.prototype.keyPressed = function (key) {
-    if(key.keyCode == 32){
+  GameController.prototype.spaceBarKeyPressed = function (key) {
+    if(key.keyCode === 32){
       if(this.countdownFinished) {
         this.game.car.accelerate();
       }
     }
-    if(key.keyCode == 13) {
-      if ((!this.game.isPlaying()) && (!this.countdownStarted)) {
+  };
+
+  GameController.prototype.enterKeyPressed = function (key) {
+    if(key.keyCode === 13){
+      if((!this.game.isPlaying()) && (!this.countdownStarted)) {
         this.startCountdown();
+      }
     }
-  }
-};
+  };
 
   GameController.prototype.startCountdown = function () {
     this.countdownStarted = true;
@@ -65,15 +68,16 @@
   };
 
   GameController.prototype._pressKeyHandler = function(e) {
-    controller.keyPressed(e);
+    controller.spaceBarKeyPressed(e);
+    controller.enterKeyPressed(e);
   };
 
   GameController.prototype._initializeTimeouts = function (element = document.getElementById('countdown')) {
     element.innerHTML = '3';
     setTimeout(function(){ element.innerHTML = '2'; }, 1000);
     setTimeout(function(){ element.innerHTML = '1'; }, 2000);
-    setTimeout(function(){ document.getElementById('welcome_message').style.display = 'none'; }, 3000);
     setTimeout(function(){
+      document.getElementById('welcome_message').style.display = 'none';
       controller.countdownFinished = true;
       controller.startGame();
     }, 3000);

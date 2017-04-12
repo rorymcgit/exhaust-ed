@@ -43,12 +43,7 @@ describe('Timing Elements', function() {
   });
 
   it("returns a string containing the lap duration", function(){
-    expect(gameView2.getDurationString(30000)).toEqual("Your lap time was: 30");
-  });
-
-  it("starts a countdown when countdown function called", function() {
-    gameView2.startCountdown(document.getElementById('test-countdown'));
-    expect(dummyElement2.childNodes[0].childNodes[1].innerHTML).toEqual('3');
+    expect(gameView2.getDurationString(30000)).toEqual("Your lap time was: 30 seconds");
   });
 
   // it("starts a game after countdown is completed", function() {
