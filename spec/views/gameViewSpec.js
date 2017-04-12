@@ -51,6 +51,14 @@ describe('Timing Elements', function() {
     expect(dummyElement2.childNodes[0].childNodes[1].innerHTML).toEqual('3');
   });
 
+  // it("starts a game after countdown is completed", function() {
+  //   gameController = new GameController();
+  //   var spy = spyOn(gameController, 'startGame').and.callThrough();
+  //
+  //   gameView2.startCountdown(document.getElementById('test-countdown'));
+  //   expect(spy).toHaveBeenCalled();
+  // });
+
   afterAll(function() {
     unmockInterface(dummyElement2);
   });

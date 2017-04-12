@@ -20,7 +20,11 @@
   GameController.prototype.keyPressed = function (key) {
     if(key.keyCode == 32){
       this.game.car.accelerate();
-      if (!this.game.isPlaying()) {
+      if (!this.game.isPlaying() && this.gameView.countdownFinished === false) {
+        this.gameView.startCountdown();
+      }
+      else if (!this.game.isPlaying()) {
+        console.log('start game');
         this.startGame();
       }
     }

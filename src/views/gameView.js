@@ -3,6 +3,7 @@
   function GameView(game = new Game()) {
     this.game = game;
     this.createCanvas();
+    this.countdownFinished = false;
   }
 
   GameView.prototype.createCanvas = function (element = document.getElementById('canvas_container')) {
@@ -36,6 +37,7 @@
     element.innerHTML = '3';
     setTimeout(function(){ element.innerHTML = '2'; }, 1000);
     setTimeout(function(){ element.innerHTML = '1'; }, 2000);
+    this.countdownFinished = true;
   };
 
   GameView.prototype._drawFinishLine = function () {
