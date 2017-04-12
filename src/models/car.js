@@ -1,6 +1,6 @@
 (function(exports) {
 
-  function Car(width = 40, height = 25, colour = "red", speed = 0, xPosition = 0, yPosition = 0, bhp = 0.05) {
+  function Car(width = 40, height = 25, colour = "red", speed = 0.2, xPosition = 0, yPosition = 0, bhp = 0.05) {
     this.width = width;
     this.height = height;
     this.colour = colour;

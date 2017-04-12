@@ -19,22 +19,21 @@
 
   GameController.prototype.keyPressed = function (key) {
     if(key.keyCode == 32){
-      // console.log('in keycode if');
-      // console.log(this.gameView.countdownFinished);
-      if(this.gameView.countdownFinished === true){
-        // console.log('countdown has finished');
+      if(this.countdownFinished) {
         this.game.car.accelerate();
       }
     }
-    if(key.keyCode == 13){
-      if (!this.game.isPlaying()) {
-        this.gameView.startCountdown();
-        if (this.gameView.countdownFinished) {
-          this.startGame();
-        }
+    if(key.keyCode == 13) {
+      if ((!this.game.isPlaying()) && (!this.countdownStarted)) {
+        this.startCountdown();
     }
   }
 };
+
+  GameController.prototype.startCountdown = function () {
+    this.countdownStarted = true;
+    this._initializeTimeouts();
+  };
 
   GameController.prototype.startGame = function () {
       this.game.begin();
@@ -67,6 +66,17 @@
 
   GameController.prototype._pressKeyHandler = function(e) {
     controller.keyPressed(e);
+  };
+
+  GameController.prototype._initializeTimeouts = function (element = document.getElementById('countdown')) {
+    element.innerHTML = '3';
+    setTimeout(function(){ element.innerHTML = '2'; }, 1000);
+    setTimeout(function(){ element.innerHTML = '1'; }, 2000);
+    setTimeout(function(){ document.getElementById('welcome_message').style.display = 'none'; }, 3000);
+    setTimeout(function(){
+      controller.countdownFinished = true;
+      controller.startGame();
+    }, 3000);
   };
 
   exports.GameController = GameController;
