@@ -3,5 +3,4 @@ $( document ).ready(function() {
   var game = new Game(car);
   var gameView = new GameView(game);
   var gameController = new GameController(gameView, game);
-  console.log(car)
 });
