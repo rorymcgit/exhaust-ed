@@ -34,7 +34,7 @@
 
   Car.prototype.moveDown = function(){
     var difference = 300 - (this.yPosition + this.height)
-    if(difference >= 10){
+    if(difference >= this.turnSpeed){
       this.yPosition = this.yPosition + this.turnSpeed;
     }
     else{
