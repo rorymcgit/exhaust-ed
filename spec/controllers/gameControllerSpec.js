@@ -11,7 +11,6 @@ carDouble.prototype = {
   moveForward: function() {
   },
   moveUp: function() {
-    // console.log("hello");
   },
   moveDown: function() {
   },
