@@ -20,8 +20,6 @@
     this.game.addObstacle(new Obstacle(5, 100, "red", 300, 0));
     this.game.addObstacle(new Obstacle(5, 100, "red", 200, 200));
     this.game.addObstacle(new Obstacle(5, 100, "red", 800, 0));
-    this.game.addObstacle(new Obstacle(5, 100, "red", 1350, 50));
-    this.game.addObstacle(new Obstacle(5, 100, "red", 1300, 200));
   };
 
   GameController.prototype.bindKeys = function () {
