@@ -3,6 +3,10 @@ describe('Car', function() {
 
   describe('a default car', function() {
     var car = new Car();
+    function carDouble() {
+      this.sprite = new Image();
+      this.sprite.src = "/some/route/to/image.jpg";
+    }
 
     it("exists", function(){
       expect(car).toBeDefined();
@@ -36,6 +40,14 @@ describe('Car', function() {
       expect(car.yPosition).toEqual(0);
     });
 
+    it('has an instance of image as the sprite', function() {
+      expect(car.sprite instanceof Image).toEqual(true);
+    });
+
+    it('has a default source for the sprite', function() {
+      var carDBL = new carDouble();
+      expect(carDBL.sprite.src).toEqual("file:///some/route/to/image.jpg");
+    });
   });
 
   describe('a custom car', function() {
