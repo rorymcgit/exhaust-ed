@@ -16,8 +16,12 @@
     this.game.addObstacle(new Obstacle(5, 100, "red", 700, 0));
     this.game.addObstacle(new Obstacle(5, 100, "red", 900, 200));
     this.game.addObstacle(new Obstacle(5, 100, "red", 1100, 50));
-    this.game.addObstacle(new Obstacle(5, 100, "red", 1100, 50));
-    this.game.addObstacle(new Obstacle(5, 100, "red", 1300, 150));
+    this.game.addObstacle(new Obstacle(5, 100, "red", 100, 100));
+    this.game.addObstacle(new Obstacle(5, 100, "red", 300, 0));
+    this.game.addObstacle(new Obstacle(5, 100, "red", 200, 200));
+    this.game.addObstacle(new Obstacle(5, 100, "red", 800, 0));
+    this.game.addObstacle(new Obstacle(5, 100, "red", 1350, 50));
+    this.game.addObstacle(new Obstacle(5, 100, "red", 1300, 200));
   };
 
   GameController.prototype.bindKeys = function () {
@@ -102,11 +106,15 @@
   };
 
   GameController.prototype.isColliding = function (car) {
-    var obstacle = this.game.obstacles[0];
-    if(((car.xPosition + car.width).toFixed(0)) == obstacle.xPosition) {
-      if ((car.yPosition + car.height >= obstacle.yPosition - car.height) && (car.yPosition + car.height <= obstacle.yPosition + obstacle.height + car.height)) {
-        if ((car.yPosition <= obstacle.yPosition + obstacle.height + car.height) && (car.yPosition >= obstacle.yPosition - car.height)) {
-          return true;
+    if(this.game.obstacles){
+      var obstaclesArray = this.game.obstacles;
+      for (i = 0; i < obstaclesArray.length; i++) {
+        if(((car.xPosition + car.width).toFixed(0)) == obstaclesArray[i].xPosition) {
+          if ((car.yPosition + car.height >= obstaclesArray[i].yPosition - car.height) && (car.yPosition + car.height <= obstaclesArray[i].yPosition + obstaclesArray[i].height + car.height)) {
+            if ((car.yPosition <= obstaclesArray[i].yPosition + obstaclesArray[i].height + car.height) && (car.yPosition >= obstaclesArray[i].yPosition - car.height)) {
+              return true;
+            }
+          }
         }
       }
     }
@@ -114,20 +122,28 @@
   };
 
   GameController.prototype.collidingTop = function (car) {
-    var obstacle = this.game.obstacles[0];
-    if((car.xPosition + car.width > obstacle.xPosition) && (car.xPosition < obstacle.xPosition + obstacle.width)){
-      if(car.yPosition + car.height >= obstacle.yPosition){
-        return true;
+    if(this.game.obstacles){
+      var obstaclesArray = this.game.obstacles;
+      for (i = 0; i < obstaclesArray.length; i++) {
+        if((car.xPosition + car.width > obstaclesArray[i].xPosition) && (car.xPosition < obstaclesArray[i].xPosition + obstaclesArray[i].width)){
+          if((car.yPosition + car.height >= obstaclesArray[i].yPosition) && car.yPosition <= obstaclesArray[i].yPosition) {
+            return true;
+          }
+        }
       }
     }
     return false;
   };
 
   GameController.prototype.collidingBottom = function (car) {
-    var obstacle = this.game.obstacles[0];
-    if((car.xPosition + car.width > obstacle.xPosition) && (car.xPosition < obstacle.xPosition + obstacle.width)){
-      if(car.yPosition <= obstacle.yPosition + obstacle.height){
-        return true;
+    if(this.game.obstacles){
+      var obstaclesArray = this.game.obstacles;
+      for (i = 0; i < obstaclesArray.length; i++) {
+        if((car.xPosition + car.width > obstaclesArray[i].xPosition) && (car.xPosition < obstaclesArray[i].xPosition + obstaclesArray[i].width)){
+          if((car.yPosition <= obstaclesArray[i].yPosition + obstaclesArray[i].height) && (car.yPosition + car.height > obstaclesArray[i].yPosition + obstaclesArray[i].height)) {
+            return true;
+          }
+        }
       }
     }
     return false;

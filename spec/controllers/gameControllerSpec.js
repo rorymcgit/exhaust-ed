@@ -221,7 +221,7 @@ describe("GameController", function() {
     it("calls addObstacle on game", function() {
       var spyObstacles = spyOn(gameController.game, "addObstacle")
       gameController.createObstacles();
-      expect(spyObstacles).toHaveBeenCalledTimes(6);
+      expect(spyObstacles).toHaveBeenCalled();
     });
   });
 
