@@ -7,26 +7,31 @@
     this.intervalTimer;
     this.bindKeys();
     this.updateGame(this.game.car);
+    this.keys = {};
   }
 
   GameController.prototype.bindKeys = function () {
-    window.addEventListener('keyup', this._pressKeyHandler, false);
+    window.addEventListener('keyup', this._keyupHandler, false);
+    window.addEventListener('keydown', this._keydownHandler, false);
   };
 
   GameController.prototype.unbindKeys = function () {
-    window.removeEventListener('keyup', this._pressKeyHandler, false);
+    window.removeEventListener('keyup', this._keyupHandler, false);
+    window.removeEventListener('keydown', this._keydownHandler, false);
   };
 
-  GameController.prototype.spaceBarKeyPressed = function (key) {
-    if(key.keyCode === 32){
-      if(this.countdownFinished) {
-        this.game.car.accelerate();
-      }
+  GameController.prototype.keyup = function (key) {
+    if(key.keyCode == 32){
+       if(this.countdownFinished) {
+         this.game.car.accelerate();
+       }
     }
+      this._removeKey(key);
   };
 
-  GameController.prototype.enterKeyPressed = function (key) {
-    if(key.keyCode === 13){
+  GameController.prototype.keydown = function (key) {
+    this._addKey(key);
+     if(key.keyCode === 13){
       if((!this.game.isPlaying()) && (!this.countdownStarted)) {
         this.startCountdown();
       }
@@ -44,7 +49,7 @@
   };
 
   GameController.prototype.updateGame = function (car) {
-    car.updatePosition();
+    this._updateCarPosition(car);
     this.gameView.clearCanvas();
     this.gameView.draw(car);
     this._flashLapTime("Current drag time: " + (this.game.getCurrentDuration() / 1000.0).toFixed(2) + " seconds");
@@ -63,13 +68,37 @@
     }
   };
 
+  GameController.prototype._updateCarPosition = function (car) {
+    if(this.keys){
+      if(this.keys[38]){
+        car.moveUp();
+      }
+      if(this.keys[40]){
+        car.moveDown();
+      }
+    }
+    car.moveForward();
+  };
+
+  GameController.prototype._addKey = function (key) {
+    this.keys[key.which] = true;
+  };
+
+  GameController.prototype._removeKey = function (key) {
+    delete this.keys[key.which];
+  };
+
   GameController.prototype._flashLapTime = function(message){
     $('#score_container').html('<h1>' + message + '</h1>');
   };
 
-  GameController.prototype._pressKeyHandler = function(e) {
-    controller.spaceBarKeyPressed(e);
-    controller.enterKeyPressed(e);
+
+  GameController.prototype._keyupHandler = function(e) {
+    controller.keyup(e);
+  };
+
+  GameController.prototype._keydownHandler = function(e) {
+    controller.keydown(e);
   };
 
   GameController.prototype._initializeTimeouts = function (element = document.getElementById('countdown')) {
