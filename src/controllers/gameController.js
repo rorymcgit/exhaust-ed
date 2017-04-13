@@ -32,16 +32,16 @@
 
   GameController.prototype.keyup = function (key) {
     if(key.keyCode == 32){
-       if(this.countdownFinished) {
-         this.game.car.accelerate();
-       }
+      if(this.countdownFinished) {
+        this.game.car.accelerate();
+      }
     }
-      this._removeKey(key);
+    this._removeKey(key);
   };
 
   GameController.prototype.keydown = function (key) {
     this._addKey(key);
-     if(key.keyCode === 13){
+    if(key.keyCode === 13){
       if((!this.game.isPlaying()) && (!this.countdownStarted)) {
         this.startCountdown();
       }
@@ -54,8 +54,8 @@
   };
 
   GameController.prototype.startGame = function () {
-      this.game.begin();
-      this.intervalTimer = setInterval(this._loop, 1);
+    this.game.begin();
+    this.intervalTimer = setInterval(this._loop, 1);
   };
 
   GameController.prototype.updateGame = function (car) {
@@ -82,10 +82,14 @@
   GameController.prototype._updateCarPosition = function (car) {
     if(this.keys){
       if(this.keys[38]){
-        car.moveUp();
+        if(!this.collidingBottom(car)){
+            car.moveUp();
+        }
       }
       if(this.keys[40]){
-        car.moveDown();
+        if(!this.collidingTop(car)){
+          car.moveDown();
+        }
       }
     }
     if(!this.isColliding(car)){
@@ -97,18 +101,11 @@
     }
   };
 
-  // if(((car.xPosition + car.width).toFixed(0)) == obstacle.xPosition) {
-// (((car.xPosition + car.width >= obstacle.xPosition) && (car.xPosition + car.width <= obstacle.xPosition + obstacle.width)) && ((car.xPosition <= obstacle.xPosition + obstacle.width) && (car.xPosition >= obstacle.xPosition))) {
-
   GameController.prototype.isColliding = function (car) {
-    // console.log("Car edge at: " + ((car.xPosition + car.width).toFixed(0)));
-    // console.log("Obstacle at: " + this.game.obstacles[0].xPosition);
-    // console.log(((car.xPosition + car.width).toFixed(0)) ==  this.game.obstacles[0].xPosition));
     var obstacle = this.game.obstacles[0];
     if(((car.xPosition + car.width).toFixed(0)) == obstacle.xPosition) {
-      console.log("Hit!!")
-      if ((car.yPosition + car.height >= obstacle.yPosition) && (car.yPosition + car.height <= obstacle.yPosition + obstacle.height)) {
-        if ((car.yPosition <= obstacle.yPosition + obstacle.height) && (car.yPosition >= obstacle.yPosition)) {
+      if ((car.yPosition + car.height >= obstacle.yPosition - car.height) && (car.yPosition + car.height <= obstacle.yPosition + obstacle.height + car.height)) {
+        if ((car.yPosition <= obstacle.yPosition + obstacle.height + car.height) && (car.yPosition >= obstacle.yPosition - car.height)) {
           return true;
         }
       }
@@ -116,7 +113,25 @@
     return false;
   };
 
+  GameController.prototype.collidingTop = function (car) {
+    var obstacle = this.game.obstacles[0];
+    if((car.xPosition + car.width > obstacle.xPosition) && (car.xPosition < obstacle.xPosition + obstacle.width)){
+      if(car.yPosition + car.height >= obstacle.yPosition){
+        return true;
+      }
+    }
+    return false;
+  };
 
+  GameController.prototype.collidingBottom = function (car) {
+    var obstacle = this.game.obstacles[0];
+    if((car.xPosition + car.width > obstacle.xPosition) && (car.xPosition < obstacle.xPosition + obstacle.width)){
+      if(car.yPosition <= obstacle.yPosition + obstacle.height){
+        return true;
+      }
+    }
+    return false;
+  };
 
   GameController.prototype._addKey = function (key) {
     this.keys[key.which] = true;
