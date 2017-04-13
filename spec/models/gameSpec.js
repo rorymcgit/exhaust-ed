@@ -9,6 +9,10 @@ describe("Game", function() {
     expect(game.car instanceof Car).toBe(true);
   });
 
+  it("has an array of obstacles", function() {
+    expect(game.obstacles).toEqual([]);
+  });
+
   it("has a start time", function() {
     expect(game.startTime).toBeDefined();
   });
@@ -85,4 +89,10 @@ describe("Game functionality", function(){
     spy.and.returnValue(dummyEndDate);
     expect(game.end()).toEqual(5000);
   });
+
+  it("can add an obstable to an array of obstacles", function(){
+    game.addObstacle(1);
+    expect(game.obstacles).toEqual([1]);
+  });
+
 });

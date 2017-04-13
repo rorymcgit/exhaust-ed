@@ -1,7 +1,6 @@
 
 describe('Car', function() {
 
-
   describe('a default car', function() {
     var car = new Car();
     function carDouble() {

@@ -61,5 +61,13 @@
     context.stroke();
   };
 
+  GameView.prototype.drawObstacles = function (obstacles) {
+    context = this.track.getContext('2d');
+    obstacles.forEach(function(item, index, array){
+      context.fillStyle = item.colour;
+      context.fillRect(item.xPosition, item.yPosition, item.width, item.height);
+    });
+  };
+
   exports.GameView = GameView;
 })(this);

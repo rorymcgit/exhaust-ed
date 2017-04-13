@@ -21,6 +21,14 @@
     this.xPosition = this.xPosition + this.speed;
   };
 
+  Car.prototype.moveBackward = function(){
+    this.xPosition = this.xPosition - 0.001;
+  };
+
+  Car.prototype.resetSpeed = function () {
+    this.speed = 0.1;
+  };
+
   Car.prototype.getPosition = function () {
     return {'xCoord' : this.xPosition, 'yCoord' : this.yPosition};
   };

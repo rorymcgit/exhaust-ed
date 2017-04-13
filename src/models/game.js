@@ -4,8 +4,13 @@
     this.playing = false;
     this.startTime = null;
     this.endTime = null;
+    this.obstacles = [];
     this.car = car;
   }
+
+  Game.prototype.addObstacle = function (obstacle) {
+    this.obstacles.push(obstacle);
+  };
 
   Game.prototype.begin = function() {
     this.playing = true;

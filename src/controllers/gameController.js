@@ -5,10 +5,22 @@
     this.game = game;
     controller = this;
     this.intervalTimer;
+    this.keys = {};
+    this.createObstacles();
     this.bindKeys();
     this.updateGame(this.game.car);
-    this.keys = {};
   }
+
+  GameController.prototype.createObstacles = function () {
+    this.game.addObstacle(new Obstacle(5, 100, "red", 500, 100));
+    this.game.addObstacle(new Obstacle(5, 100, "red", 700, 0));
+    this.game.addObstacle(new Obstacle(5, 100, "red", 900, 200));
+    this.game.addObstacle(new Obstacle(5, 100, "red", 1100, 50));
+    this.game.addObstacle(new Obstacle(5, 100, "red", 100, 100));
+    this.game.addObstacle(new Obstacle(5, 100, "red", 300, 0));
+    this.game.addObstacle(new Obstacle(5, 100, "red", 200, 200));
+    this.game.addObstacle(new Obstacle(5, 100, "red", 800, 0));
+  };
 
   GameController.prototype.bindKeys = function () {
     window.addEventListener('keyup', this._keyupHandler, false);
@@ -22,16 +34,16 @@
 
   GameController.prototype.keyup = function (key) {
     if(key.keyCode == 32){
-       if(this.countdownFinished) {
-         this.game.car.accelerate();
-       }
+      if(this.countdownFinished) {
+        this.game.car.accelerate();
+      }
     }
-      this._removeKey(key);
+    this._removeKey(key);
   };
 
   GameController.prototype.keydown = function (key) {
     this._addKey(key);
-     if(key.keyCode === 13){
+    if(key.keyCode === 13){
       if((!this.game.isPlaying()) && (!this.countdownStarted)) {
         this.startCountdown();
       }
@@ -44,14 +56,15 @@
   };
 
   GameController.prototype.startGame = function () {
-      this.game.begin();
-      this.intervalTimer = setInterval(this._loop, 1);
+    this.game.begin();
+    this.intervalTimer = setInterval(this._loop, 1);
   };
 
   GameController.prototype.updateGame = function (car) {
     this._updateCarPosition(car);
     this.gameView.clearCanvas();
     this.gameView.draw(car);
+    this.gameView.drawObstacles(this.game.obstacles);
     this._flashLapTime("Current drag time: " + (this.game.getCurrentDuration() / 1000.0).toFixed(2));
   };
 
@@ -71,13 +84,67 @@
   GameController.prototype._updateCarPosition = function (car) {
     if(this.keys){
       if(this.keys[38]){
-        car.moveUp();
+        if(!this.collidingBottom(car)){
+            car.moveUp();
+        }
       }
       if(this.keys[40]){
-        car.moveDown();
+        if(!this.collidingTop(car)){
+          car.moveDown();
+        }
       }
     }
-    car.moveForward();
+    if(!this.isColliding(car)){
+      car.moveForward();
+    }
+    else{
+      car.moveBackward();
+      car.resetSpeed();
+    }
+  };
+
+  GameController.prototype.isColliding = function (car) {
+    if(this.game.obstacles){
+      var obstaclesArray = this.game.obstacles;
+      for (i = 0; i < obstaclesArray.length; i++) {
+        if(((car.xPosition + car.width).toFixed(0)) == obstaclesArray[i].xPosition) {
+          if ((car.yPosition + car.height >= obstaclesArray[i].yPosition - car.height) && (car.yPosition + car.height <= obstaclesArray[i].yPosition + obstaclesArray[i].height + car.height)) {
+            if ((car.yPosition <= obstaclesArray[i].yPosition + obstaclesArray[i].height + car.height) && (car.yPosition >= obstaclesArray[i].yPosition - car.height)) {
+              return true;
+            }
+          }
+        }
+      }
+    }
+    return false;
+  };
+
+  GameController.prototype.collidingTop = function (car) {
+    if(this.game.obstacles){
+      var obstaclesArray = this.game.obstacles;
+      for (i = 0; i < obstaclesArray.length; i++) {
+        if((car.xPosition + car.width > obstaclesArray[i].xPosition) && (car.xPosition < obstaclesArray[i].xPosition + obstaclesArray[i].width)){
+          if((car.yPosition + car.height >= obstaclesArray[i].yPosition) && car.yPosition <= obstaclesArray[i].yPosition) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  };
+
+  GameController.prototype.collidingBottom = function (car) {
+    if(this.game.obstacles){
+      var obstaclesArray = this.game.obstacles;
+      for (i = 0; i < obstaclesArray.length; i++) {
+        if((car.xPosition + car.width > obstaclesArray[i].xPosition) && (car.xPosition < obstaclesArray[i].xPosition + obstaclesArray[i].width)){
+          if((car.yPosition <= obstaclesArray[i].yPosition + obstaclesArray[i].height) && (car.yPosition + car.height > obstaclesArray[i].yPosition + obstaclesArray[i].height)) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
   };
 
   GameController.prototype._addKey = function (key) {

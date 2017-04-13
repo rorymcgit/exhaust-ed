@@ -21,7 +21,6 @@ carDouble.prototype = {
   }
 };
 
-
 function gameDouble(carDouble) {
   this.car = carDouble;
 }
@@ -30,10 +29,10 @@ gameDouble.prototype = {
   getCurrentDuration: function() {
   },
   isPlaying: function(){
-
   },
   begin: function(){
-
+  },
+  addObstacle: function(){
   }
 };
 
@@ -46,9 +45,10 @@ gameViewDouble.prototype = {
   clearCanvas: function() {
   },
   draw: function() {
+  },
+  drawObstacles: function(){
   }
 };
-
 
 describe("GameController", function() {
   beforeAll(function() {
@@ -214,6 +214,14 @@ describe("GameController", function() {
     it("starts a countdown when countdown function called", function() {
       gameController.startCountdown();
       expect(dummyElement.childNodes[0].childNodes[1].innerHTML).toEqual('3');
+    });
+  });
+
+  describe("createObstacles", function() {
+    it("calls addObstacle on game", function() {
+      var spyObstacles = spyOn(gameController.game, "addObstacle")
+      gameController.createObstacles();
+      expect(spyObstacles).toHaveBeenCalled();
     });
   });
 
