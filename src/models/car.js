@@ -1,6 +1,6 @@
 (function(exports) {
 
-  function Car(width = 40, height = 25, colour = "red", speed = 0, xPosition = 0, yPosition = 0, bhp = 0.05, turnSpeed = 1) {
+  function Car(width = 40, height = 25, colour = "red", speed = 0, xPosition = 0, yPosition = 0, bhp = 0.05, turnSpeed = 1, carImage = new Image() ) {
     this.width = width;
     this.height = height;
     this.colour = colour;
@@ -9,7 +9,13 @@
     this.yPosition = yPosition;
     this.bhp = bhp;
     this.turnSpeed = turnSpeed;
+    this.carImage = carImage
+    this.carImage.src = "redcar_copy.jpg"
   }
+
+  // Car.prototype.getImage = function(){
+  //     this.carImage.src = "redcar_copy.jpg"
+  // }
 
   Car.prototype.accelerate = function(){
     this.speed += this.bhp;

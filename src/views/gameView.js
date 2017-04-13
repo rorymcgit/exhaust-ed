@@ -9,12 +9,20 @@
     canvasHTML = '<canvas id="canvas" width="1500" height="300" style="border: solid 1px;"></canvas>';
     element.innerHTML = canvasHTML;
     this.track = element.children[0];
+    context = this.track.getContext('2d');
+    var car = this.game.car
+    car.carImage.onload = function(){context.drawImage(car.carImage, car.xPosition, car.yPosition)}
+
+    // this.draw(this.game.car)
   };
 
   GameView.prototype.draw = function (car) {
     context = this.track.getContext('2d');
-    context.fillStyle = car.colour;
-    context.fillRect(car.xPosition, car.yPosition, car.width, car.height);
+    // context.fillStyle = car.colour;
+    // context.fillRect(car.xPosition, car.yPosition, car.width, car.height);
+    // car.getImage()
+    // console.log(car)
+    context.drawImage(car.carImage, car.xPosition, car.yPosition)
     this._drawLines(context);
   };
 
