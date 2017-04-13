@@ -10,19 +10,15 @@
     element.innerHTML = canvasHTML;
     this.track = element.children[0];
     context = this.track.getContext('2d');
-    var car = this.game.car
-    car.carImage.onload = function(){context.drawImage(car.carImage, car.xPosition, car.yPosition)}
-
-    // this.draw(this.game.car)
+    var car = this.game.car;
+    car.sprite.onload = function() {
+      context.drawImage(car.sprite, car.xPosition, car.yPosition);
+    };
   };
 
   GameView.prototype.draw = function (car) {
     context = this.track.getContext('2d');
-    // context.fillStyle = car.colour;
-    // context.fillRect(car.xPosition, car.yPosition, car.width, car.height);
-    // car.getImage()
-    // console.log(car)
-    context.drawImage(car.carImage, car.xPosition, car.yPosition)
+    context.drawImage(car.sprite, car.xPosition, car.yPosition);
     this._drawLines(context);
   };
 
@@ -32,7 +28,7 @@
   };
 
   GameView.prototype.getDurationString = function (duration) {
-    return "Your lap time was: " + (duration /  1000.0).toFixed(2) + " seconds";
+    return "Your lap time was: " + (duration / 1000.0).toFixed(2) + " seconds";
   };
 
   GameView.prototype._drawLines = function() {

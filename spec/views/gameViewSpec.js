@@ -19,7 +19,7 @@ describe("GameView", function() {
   });
 
   it("draws on the canvas", function(){
-    var spy = spyOn(gameView.track.getContext('2d'), 'fillRect').and.callThrough();
+    var spy = spyOn(gameView.track.getContext('2d'), 'drawImage').and.callThrough();
     gameView.draw(new Car());
     expect(spy).toHaveBeenCalled();
   });
