@@ -14,12 +14,13 @@
   GameController.prototype.createObstacles = function () {
     this.game.addObstacle(new Obstacle(5, 100, "red", 500, 100));
     this.game.addObstacle(new Obstacle(5, 100, "red", 700, 0));
+    this.game.addObstacle(new Obstacle(5, 100, "red", 700, 200));
     this.game.addObstacle(new Obstacle(5, 100, "red", 900, 200));
     this.game.addObstacle(new Obstacle(5, 100, "red", 1100, 50));
     this.game.addObstacle(new Obstacle(5, 100, "red", 100, 100));
     this.game.addObstacle(new Obstacle(5, 100, "red", 300, 0));
     this.game.addObstacle(new Obstacle(5, 100, "red", 200, 200));
-    this.game.addObstacle(new Obstacle(5, 100, "red", 800, 0));
+    this.game.addObstacle(new Obstacle(5, 100, "red", 950, 0));
   };
 
   GameController.prototype.bindKeys = function () {
