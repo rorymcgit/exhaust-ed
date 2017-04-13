@@ -24,9 +24,6 @@
     if(key.keyCode == 32){
        if(this.countdownFinished) {
          this.game.car.accelerate();
-         if (!this.game.isPlaying()){
-           this.startGame();
-         }
        }
     }
       this._removeKey(key);
