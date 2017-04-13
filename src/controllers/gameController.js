@@ -5,10 +5,20 @@
     this.game = game;
     controller = this;
     this.intervalTimer;
+    this.keys = {};
+    this.createObstacles();
     this.bindKeys();
     this.updateGame(this.game.car);
-    this.keys = {};
   }
+
+  GameController.prototype.createObstacles = function () {
+    this.game.addObstacle(new Obstacle(5, 100, "red", 500, 100));
+    this.game.addObstacle(new Obstacle(5, 100, "red", 700, 0));
+    this.game.addObstacle(new Obstacle(5, 100, "red", 900, 200));
+    this.game.addObstacle(new Obstacle(5, 100, "red", 1100, 50));
+    this.game.addObstacle(new Obstacle(5, 100, "red", 1100, 50));
+    this.game.addObstacle(new Obstacle(5, 100, "red", 1300, 150));
+  };
 
   GameController.prototype.bindKeys = function () {
     window.addEventListener('keyup', this._keyupHandler, false);
@@ -52,6 +62,7 @@
     this._updateCarPosition(car);
     this.gameView.clearCanvas();
     this.gameView.draw(car);
+    this.gameView.drawObstacles(this.game.obstacles);
     this._flashLapTime("Current drag time: " + (this.game.getCurrentDuration() / 1000.0).toFixed(2) + " seconds");
   };
 
@@ -77,7 +88,23 @@
         car.moveDown();
       }
     }
-    car.moveForward();
+    if(!this.isColliding(car)){
+      car.moveForward();
+    }
+    else{
+      car.moveBackward();
+    }
+  };
+
+  GameController.prototype.isColliding = function (car) {
+    // console.log("Car edge at: " + ((car.xPosition + car.width).toFixed(0)));
+    // console.log("Obstacle at: " + this.game.obstacles[0].xPosition);
+    // console.log(((car.xPosition + car.width).toFixed(0)) ==  this.game.obstacles[0].xPosition));
+    if(((car.xPosition + car.width).toFixed(0)) ==  this.game.obstacles[0].xPosition){
+      console.log("Hit!!")
+      return true
+    }
+    return false;
   };
 
   GameController.prototype._addKey = function (key) {
