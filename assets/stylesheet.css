@@ -3,9 +3,35 @@
  -moz-box-sizing: content-box;
  box-sizing: content-box;
  border: none;
- font: normal 80px/normal “Anton”, Helvetica, sans-serif;
- color: rgb(255, 255, 255);
+ font-family: 'Racing Sans One', cursive;
+ font-size: 90px;
+ color: rgb(0, 0, 0);
  -o-text-overflow: clip;
  text-overflow: clip;
  text-shadow: 0 0 20px rgb(254,252,201) , 10px -10px 30px rgb(254,236,133) , -20px -20px 40px rgb(255,174,52) , 20px -40px 50px rgb(236,118,12) , -20px -60px 60px rgb(205,70,6) , 0 -80px 70px rgb(151,55,22) , 10px -90px 80px rgb(69,27,14) ;
+}
+
+
+
+#welcome_message {
+  z-index: 100;
+  border: 5px solid black;
+  padding:0px 15px 0px 15px;
+  position: absolute;left:375px;top:160px;
+  background-color: white;
+  opacity: 0.5;
+  font-family: 'Racing Sans One', cursive;
+}
+
+
+
+#countdown {
+  font-family: 'Racing Sans One', cursive;
+  font-size: 30px;
+}
+
+#drag_time {
+  font-family: 'Racing Sans One', cursive;
+  position: absolute;left:420px;top:400px;
+
 }

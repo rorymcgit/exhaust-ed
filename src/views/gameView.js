@@ -35,7 +35,7 @@
   };
 
   GameView.prototype.getDurationString = function (duration) {
-    return "Your lap time was: " + (duration / 1000.0).toFixed(2) + " seconds";
+    return "Your drag time was: " + (duration / 1000.0).toFixed(2) + " s";
   };
 
   GameView.prototype._drawLines = function() {

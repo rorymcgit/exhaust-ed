@@ -52,11 +52,11 @@
     this._updateCarPosition(car);
     this.gameView.clearCanvas();
     this.gameView.draw(car);
-    this._flashLapTime("Current drag time: " + (this.game.getCurrentDuration() / 1000.0).toFixed(2) + " seconds");
+    this._flashLapTime("Current drag time: " + (this.game.getCurrentDuration() / 1000.0).toFixed(2));
   };
 
   GameController.prototype.reachedFinishLine = function (car) {
-    return car.getPosition().xCoord >= 1460;
+    return car.getPosition().xCoord >= 1220;
   };
 
   GameController.prototype._loop = function() {
@@ -89,7 +89,7 @@
   };
 
   GameController.prototype._flashLapTime = function(message){
-    $('#score_container').html('<h1>' + message + '</h1>');
+    $('#drag_time').html('<h1>' + message + '</h1>');
   };
 
 
