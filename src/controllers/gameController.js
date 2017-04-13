@@ -93,19 +93,30 @@
     }
     else{
       car.moveBackward();
+      car.resetSpeed();
     }
   };
+
+  // if(((car.xPosition + car.width).toFixed(0)) == obstacle.xPosition) {
+// (((car.xPosition + car.width >= obstacle.xPosition) && (car.xPosition + car.width <= obstacle.xPosition + obstacle.width)) && ((car.xPosition <= obstacle.xPosition + obstacle.width) && (car.xPosition >= obstacle.xPosition))) {
 
   GameController.prototype.isColliding = function (car) {
     // console.log("Car edge at: " + ((car.xPosition + car.width).toFixed(0)));
     // console.log("Obstacle at: " + this.game.obstacles[0].xPosition);
     // console.log(((car.xPosition + car.width).toFixed(0)) ==  this.game.obstacles[0].xPosition));
-    if(((car.xPosition + car.width).toFixed(0)) ==  this.game.obstacles[0].xPosition){
+    var obstacle = this.game.obstacles[0];
+    if(((car.xPosition + car.width).toFixed(0)) == obstacle.xPosition) {
       console.log("Hit!!")
-      return true
+      if ((car.yPosition + car.height >= obstacle.yPosition) && (car.yPosition + car.height <= obstacle.yPosition + obstacle.height)) {
+        if ((car.yPosition <= obstacle.yPosition + obstacle.height) && (car.yPosition >= obstacle.yPosition)) {
+          return true;
+        }
+      }
     }
     return false;
   };
+
+
 
   GameController.prototype._addKey = function (key) {
     this.keys[key.which] = true;
