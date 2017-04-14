@@ -4,8 +4,8 @@ An arcade racing game
 
 MVP -  A blob that can move in one direction
 
-```
 User stories for MVP:
+```
 As a Vin Diesel
 So I can play a game
 I want to be able to press the spacebar to start a race
