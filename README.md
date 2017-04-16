@@ -1,6 +1,8 @@
-# fast-and-furryous
+# EXHAUST-ED
 
-An arcade racing game
+Week 9 practice project week at Makers Academy.
+
+We created an arcade racing game using JavaScript and HTML 5.
 
 MVP -  A blob that can move in one direction
 
@@ -22,3 +24,17 @@ As a Vin Diesel
 So that I know how fast I went
 I want to see my race time
 ```
+
+Usage
+-----
+- git clone git@github.com:Noora-q/EXHAUST-ED.git
+- cd EXHAUST-ED
+- open index.html
+
+![alt tag](https://github.com/Noora-q/EXHAUST-ED/blob/master/Screen%20Shot%202017-04-13%20at%2016.33.39.png)
+![alt tag](https://github.com/Noora-q/EXHAUST-ED/blob/master/Screen%20Shot%202017-04-14%20at%2001.19.48.png)
+
+Things I want to complete in the future:
+- Circular track
+- Different obstacles (maybe moving ones)
+- Different cars with different porperties
