@@ -32,7 +32,7 @@ Usage
 - open index.html
 
 ![alt tag](https://github.com/Noora-q/EXHAUST-ED/blob/master/Screen%20Shot%202017-04-13%20at%2016.33.39.png)
-![alt tag](https://github.com/Noora-q/EXHAUST-ED/blob/master/Screen%20Shot%202017-04-14%20at%2001.19.48.png)
+![alt tag](https://github.com/Noora-q/EXHAUST-ED/blob/master/Screen%20Shot%202017-04-16%20at%2016.39.47.png)
 
 Things I want to complete in the future:
 - Circular track
