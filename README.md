@@ -6,6 +6,7 @@ We created an arcade racing game using JavaScript and HTML 5.
 
 MVP -  A blob that can move in one direction
 
+
 ```
 User stories for MVP:
 As a Vin Diesel
@@ -25,6 +26,7 @@ So that I know how fast I went
 I want to see my race time
 ```
 
+
 Usage
 -----
 - git clone git@github.com:Noora-q/EXHAUST-ED.git
@@ -32,6 +34,7 @@ Usage
 - open index.html
 
 ![alt tag](https://github.com/Noora-q/EXHAUST-ED/blob/master/Screen%20Shot%202017-04-13%20at%2016.33.39.png)
+
 ![alt tag](https://github.com/Noora-q/EXHAUST-ED/blob/master/Screen%20Shot%202017-04-16%20at%2016.39.47.png)
 
 Things I want to complete in the future:
