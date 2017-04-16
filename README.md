@@ -35,6 +35,10 @@ Usage
 ![alt tag](https://github.com/Noora-q/EXHAUST-ED/blob/master/Screen%20Shot%202017-04-16%20at%2016.39.47.png)
 
 Things I want to complete in the future:
+- 2 players
+- Brake
+- Damage
 - Circular track
 - Different obstacles (maybe moving ones)
 - Different cars with different porperties
+- Sound effects
