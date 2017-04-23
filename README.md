@@ -4,6 +4,8 @@ A left to right car-racing obstacle-dodging arcade game in your browser.
   
 Written in vanilla JavaScript and HTML5/CSS.
 
+![begin race](https://github.com/rorymcgit/exhaust-ed/blob/master/Exhaust-ed_beginrace.png)
+
 #### To race:
 
 - Clone this repo
@@ -17,10 +19,7 @@ Written in vanilla JavaScript and HTML5/CSS.
 - Try to beat the score in the image below!
 
 ---
-
-![begin race](https://github.com/rorymcgit/exhaust-ed/blob/master/Exhaust-ed_beginrace.png)
-
-
+![end race](https://github.com/rorymcgit/exhaust-ed/blob/master/Exhaust-ed_endrace.png)
 Our initial user stories for MVP:
 ```
 As a racer,
@@ -40,7 +39,6 @@ So that I know how fast I went,
 I want to see my race time.
 ```
 
-![end race](https://github.com/rorymcgit/exhaust-ed/blob/master/Exhaust-ed_endrace.png)
 
 #### Features to add in the future:
 - Multiplayer
