@@ -42,8 +42,8 @@ I want to see my race time.
 ---
 
 #### Features to add in the future:
-- Multiplayer
-- Car damage
+- Multiplayer (online or local play)
+- Accumulating vehicle damage (leading to a disqualifying crash)
 - Larger or moving track
 - Additional obstacles (moving/crossing/destructable)
 - Select car with different acceleration/durability/turn speed
