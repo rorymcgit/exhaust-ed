@@ -1,47 +1,48 @@
 # EXHAUST-ED
 
-Week 9 practice project week at Makers Academy.
+A left to right browser car-racing obstacle-dodging arcade game.  
+Written in vanilla JavaScript and HTML5/CSS.
 
-We created an arcade racing game using JavaScript and HTML 5.
+To race:
 
-MVP -  A blob that can move in one direction
+- Clone this repo
+- Open index.html in your favourite browser
+- Press &#8617; to begin race countdown
+- Race!
+  - Mash &#9251; to increase speed
+  - Use &#8593; &uarr; to swerve car up
+  - Use &#8595; &darr; to swerve car down
+  - &#8984; + ```R``` to race again
+- Try to beat the score in the image below!
 
-
+---
+Our initial user stories for MVP:
 ```
-User stories for MVP:
-As a Vin Diesel
-So I can play a game
-I want to be able to press the spacebar to start a race
+As a racer,
+So I can play a game,
+I want to be able to press a button to start a race.
 
-As a Vin Diesel
-So I can move my car faster
-I want to be able to press the spacebar to increase my speed
+As a racer,
+So I can move my car faster,
+I want to be able to press the spacebar to increase my speed.
 
-As a Vin Diesel
-So I can finish a game
-I want to know when I reach the finish line
+As a racer,
+So I can finish a game,
+I want to know when I reach the finish line.
 
-As a Vin Diesel
-So that I know how fast I went
-I want to see my race time
+As a racer,
+So that I know how fast I went,
+I want to see my race time.
 ```
 
+![begin race](https://github.com/rorymcgit/exhaust-ed/blob/master/Exhaust-ed_beginrace.png)
 
-Usage
------
-- git clone git@github.com:Noora-q/EXHAUST-ED.git
-- cd EXHAUST-ED
-- open index.html
+![end race](https://github.com/rorymcgit/exhaust-ed/blob/master/Exhaust-ed_endrace.png)
 
-![alt tag](https://github.com/Noora-q/EXHAUST-ED/blob/master/Screen%20Shot%202017-04-13%20at%2016.33.39.png)
-
-![alt tag](https://github.com/Noora-q/EXHAUST-ED/blob/master/Screen%20Shot%202017-04-16%20at%2016.39.47.png)
-
-Things I want to complete in the future:
-- 2 players
-- Brake
-- Damage
-- Circular track
-- Different obstacles (maybe moving ones)
-- Different cars with different porperties
-- Sound effects
+Features to add in the future:
+- Multiplayer
+- Car damage
+- Larger or moving track
+- Additional obstacles (moving/crossing/destructable)
+- Select car with different acceleration/durability/turn speed
+- And of course, sound effects
