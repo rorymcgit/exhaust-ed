@@ -18,7 +18,7 @@ Written in vanilla JavaScript and HTML5/CSS.
   - &#8984; + ```R``` to race again
 - Try to beat the score in the image below!
 
----
+
 ![end race](https://github.com/rorymcgit/exhaust-ed/blob/master/Exhaust-ed_endrace.png)
 Our initial user stories for MVP:
 ```
@@ -39,6 +39,7 @@ So that I know how fast I went,
 I want to see my race time.
 ```
 
+---
 
 #### Features to add in the future:
 - Multiplayer
