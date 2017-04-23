@@ -1,17 +1,18 @@
 # EXHAUST-ED
 
-A left to right browser car-racing obstacle-dodging arcade game.  
+A left to right car-racing obstacle-dodging arcade game in your browser.  
+  
 Written in vanilla JavaScript and HTML5/CSS.
 
 To race:
 
 - Clone this repo
 - Open index.html in your favourite browser
-- Press &#8617; to begin race countdown
+- Press ```return``` to begin race countdown
 - Race!
-  - Mash &#9251; to increase speed
-  - Use &#8593; &uarr; to swerve car up
-  - Use &#8595; &darr; to swerve car down
+  - Mash ```spacebar``` to increase speed
+  - Use &#8593; to swerve car up
+  - Use &#8595; to swerve car down
   - &#8984; + ```R``` to race again
 - Try to beat the score in the image below!
 
@@ -39,7 +40,7 @@ I want to see my race time.
 
 ![end race](https://github.com/rorymcgit/exhaust-ed/blob/master/Exhaust-ed_endrace.png)
 
-Features to add in the future:
+#### Features to add in the future:
 - Multiplayer
 - Car damage
 - Larger or moving track
