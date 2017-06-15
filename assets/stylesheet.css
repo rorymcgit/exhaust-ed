@@ -32,8 +32,9 @@
 #drag_time {
   font-family: 'Racing Sans One', cursive;
   position: absolute;
-  left:420px;
-  top:400px;
+  margin-top: 10px;
+  left: 500px;
+  top: 400px;
 }
 
 #canvas_container {
