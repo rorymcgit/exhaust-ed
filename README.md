@@ -16,7 +16,7 @@ Written in vanilla JavaScript and HTML5/CSS3. [Try it out on Heroku](https://exh
   - Use &#8593; to swerve car up
   - Use &#8595; to swerve car down
   - &#8984; + ```R``` to race again
-- Try to beat the score in the image below!
+- If you hit an obstacle, your speed will be reset. Try to beat the score in the image below!
 
 
 ![end race](https://github.com/rorymcgit/exhaust-ed/blob/master/Exhaust-ed_endrace.png)
