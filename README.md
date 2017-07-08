@@ -1,8 +1,8 @@
 # EXHAUST-ED
 
 A left to right car-racing obstacle-dodging arcade game in your browser.  
-  
-Written in vanilla JavaScript and HTML5/CSS.
+
+Written in vanilla JavaScript and HTML5/CSS3. ![Try it out on Heroku](https://exhaust-ed.herokuapp.com/)
 
 ![begin race](https://github.com/rorymcgit/exhaust-ed/blob/master/Exhaust-ed_beginrace.png)
 
